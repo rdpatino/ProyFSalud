@@ -1,0 +1,37 @@
+Asignación y Disponibilidad de salones - Facultad de Salud - Unicauca
+
+Idea de front-end
+    Tres divisiones en pantalla
+
+    1- panel arriba (header) :
+        - Horario por salón
+        - Horario por día 
+        - Solicitudes (trabajo futuro)
+       A- Crear (para admin y coordinadores)
+
+        - About (Agrega más para admin)
+        - Login / Logout
+
+    2- panel izquierda : despliega opciones para cada header 
+        - Horario por salón: Nombre de salones
+        - Horario por día: lunes a sábado
+        - Solicitudes (trabajo futuro)
+        - crear (para admin y coordinadores): Salón, Profesor, Materia
+
+    3- panel contenido :
+ 
+        - Horario por salón: lunes-sabado vs 7am-7pm
+        - Horario por día: salones vs 7am-7pm
+        - Solicitudes (trabajo futuro)
+        - crear (para admin y coordinadores): Datos para crear Objeto
+
+Páginas:
+Home
+Login: directo con admin, admin
+Materia: Accede cada materia a una página para dar información de ella (opcional)
+Horario por salón: Nombre de salones -> lunes-sabado vs 7am-7pm
+Horario por día: lunes a sábado -> salones vs 7am-7pm
+Lista Materias
+Lista Profesores
+Lista Salones
+About/ Información 

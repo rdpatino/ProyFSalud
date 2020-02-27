@@ -1,0 +1,17 @@
+ng new proyFSalud
+ng g m components/pages/home -m=app --route home
+ng g m components/materias/listamaterias -m=app
+ng g c components/materias/materia -m=app
+
+Ficheros
+shared / models / 
+.file.interfaces.ts 
+
+-----> falta
+ng g s components/materias/materia --falta 
+
+ng add @angular/material 
+    Deep Purple/Amber , yes , yes 
+
+ng g m material -m=app --flat 
+
