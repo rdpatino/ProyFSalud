@@ -1,5 +1,5 @@
 ng new proyFSalud
-ng g m components/pages/home -m=app --route home
+ng g m components/home -m=app --route home
 ng g m components/materias/listamaterias -m=app
 ng g c components/materias/materia -m=app
 
@@ -14,4 +14,8 @@ ng add @angular/material
     Deep Purple/Amber , yes , yes 
 
 ng g m material -m=app --flat 
+
+ng g c shared/components/toolbar -m=app
+
+ng g m components/pages/about -m=app --route about
 

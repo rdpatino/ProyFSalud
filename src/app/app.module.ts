@@ -6,11 +6,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { MateriaComponent } from './components/materias/materia/materia.component';
+import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    MateriaComponent
+    MateriaComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
