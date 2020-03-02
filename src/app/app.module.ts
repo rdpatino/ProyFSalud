@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MateriasService } from './components/materias/materias.service';
 import { ListamateriasComponent } from './components/materias/listamaterias/listamaterias.component';
+import { HorariossalonService } from './components/horarios/horariossalon.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ListamateriasComponent } from './components/materias/listamaterias/list
     FormsModule,
     HttpClientModule
   ],
-  providers: [MateriasService],
+  providers: [MateriasService, HorariossalonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,7 +9,9 @@ const routes: Routes = [
   //{ path: 'materias', loadChildren: () => import('./components/materias/listamaterias/listamaterias.module').then(m => m.ListamateriasModule) },
   { path: 'materia/:id', component: MateriaComponent },
   { path: 'about', loadChildren: () => import('./components/pages/about/about.module').then(m => m.AboutModule) },
-  { path: 'listamaterias', loadChildren: () => import('./components/materias/listamaterias/listamaterias.module').then(m => m.ListamateriasModule) }
+  { path: 'listamaterias', loadChildren: () => import('./components/materias/listamaterias/listamaterias.module').then(m => m.ListamateriasModule) },
+  { path: 'horariosalon', loadChildren: () => import('./components/horarios/horariosalon/horariosalon.module').then(m => m.HorariosalonModule) },
+  { path: 'horariodia', loadChildren: () => import('./components/horarios/horariodia/horariodia.module').then(m => m.HorariodiaModule) }
 ];
 
 @NgModule({

@@ -8,7 +8,7 @@ import { MateriasService } from '../materias.service';
 })
 export class ListamateriasComponent implements OnInit {
 
-  //- Materia (nombre, asignacionTS[Tiempo, Salon], programa, cupo, semestre, Profesores)
+  // Materia (nombre, asignacionTS[Tiempo, Salon], programa, cupo, semestre, Profesores)
 
   materias = null;
   materia = {

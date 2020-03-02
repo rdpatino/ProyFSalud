@@ -21,3 +21,9 @@ npm install
 ng g s components/materias/materias
 
 https://www.youtube.com/watch?v=m_VSSdAESBE&list=LLE2INvU9hBWNiyZ9DcaFmbA&index=2&
+
+ng g m components/horarios/horariosalon -m=app --route horariosalon
+ng g m components/horarios/horariodia -m=app --route horariodia
+
+ng g s components/horarios/horariossalon
+ng g s components/horarios/horariosdia
