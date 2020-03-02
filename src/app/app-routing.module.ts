@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule) },
   //{ path: 'materias', loadChildren: () => import('./components/materias/listamaterias/listamaterias.module').then(m => m.ListamateriasModule) },
   { path: 'materia/:id', component: MateriaComponent },
-  { path: 'about', loadChildren: () => import('./components/pages/about/about.module').then(m => m.AboutModule) }
+  { path: 'about', loadChildren: () => import('./components/pages/about/about.module').then(m => m.AboutModule) },
+  { path: 'listamaterias', loadChildren: () => import('./components/materias/listamaterias/listamaterias.module').then(m => m.ListamateriasModule) }
 ];
 
 @NgModule({

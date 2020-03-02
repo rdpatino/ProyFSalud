@@ -1,1 +1,51 @@
 <p>listamaterias works!</p>
+
+<!-- Materia (nombre, asignacionTS[Tiempo, Salon], programa, cupo, semestre, Profesores) -->
+<!--  -->
+<div align="center">
+    <h1>LISTA DE MATERIAS</h1>
+
+    <table class="mat-elevation-z8" *ngIf="hayRegistros(); else sin">
+        <tr>
+        <td>ID</td>
+        <td>Nombre</td>
+        <td>AsignaciónTS [T,S]</td>
+        <td>Programa</td>
+        <td>Cupo</td>
+        <td>Semestre</td>
+        <td>Profesores</td>
+        <td>BORRAR</td>
+        <td>VER</td>
+      </tr>
+      <tr *ngFor="let materia of materias">
+        <td> {{ materia.matId }} </td>
+        <td> {{ materia.matNombre }} </td>
+        <td> {{ materia.matAsignacionTS }} </td>
+        <td> {{ materia.matPrograma }} </td>
+        <td> {{ materia.matCupo }} </td>
+        <td> {{ materia.matSemestre }} </td>
+        <td> {{ materia.matProfesores }} </td>
+        <td> <button mat-raised-button color="warn" (click)="borrarMateria(materia.matId)"> Borrar </button> </td>
+        <td> <button mat-raised-button color="primary" (click)="buscarMateria(materia.matId)"> Seleccionar </button> </td>
+      </tr>
+    </table>
+  
+    <ng-template #sin>
+      <p>No hay materias registradas.</p>
+    </ng-template>
+
+    <div>
+      <p> Nombre: <input type="text" [(ngModel)]="materia.matNombre" /> </p>
+      <p> AsignaciónTS: <input type="text" [(ngModel)]="materia.matAsignacionTS" /> </p>
+      <p> Programa: <input type="text" [(ngModel)]="materia.matPrograma" /> </p>
+      <p> Cupo: <input type="number" [(ngModel)]="materia.matCupo" /> </p>
+      <p> Semestre: <input type="number" [(ngModel)]="materia.matSemestre" /> </p>
+      <p> Profesores: <input type="text" [(ngModel)]="materia.matProfesores" /> </p> 
+      <p> 
+        <button mat-raised-button color="accent" (click)="crearMateria()"> AGREGAR </button> 
+        <button mat-raised-button color="primary" (click)="editarMateria()"> MODIFICAR </button> 
+      </p>
+    </div>
+    
+</div>
+  

@@ -8,6 +8,10 @@ import { MaterialModule } from './material.module';
 import { MateriaComponent } from './components/materias/materia/materia.component';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MateriasService } from './components/materias/materias.service';
+import { ListamateriasComponent } from './components/materias/listamaterias/listamaterias.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +23,11 @@ import { ToolbarComponent } from './shared/components/toolbar/toolbar.component'
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MateriasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

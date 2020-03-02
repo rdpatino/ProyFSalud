@@ -7,9 +7,6 @@ Ficheros
 shared / models / 
 .file.interfaces.ts 
 
------> falta
-ng g s components/materias/materia --falta 
-
 ng add @angular/material 
     Deep Purple/Amber , yes , yes 
 
@@ -19,3 +16,8 @@ ng g c shared/components/toolbar -m=app
 
 ng g m components/pages/about -m=app --route about
 
+npm install
+
+ng g s components/materias/materias
+
+https://www.youtube.com/watch?v=m_VSSdAESBE&list=LLE2INvU9hBWNiyZ9DcaFmbA&index=2&

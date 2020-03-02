@@ -1,6 +1,47 @@
 Asignación y Disponibilidad de salones - Facultad de Salud - Unicauca
 
-Idea de front-end
+---------- Procesos en asignación de salones ----------
+
+NOTA: Las asignación será en tiempo fijo (lunes a sabado, no en calendario)
+
+Clases:
+
+- Usuario (tipo, id, password)
+
+- Materia (nombre, asignacionTS[Tiempo, Salon], programa, cupo, semestre, Profesores)
+
+- Salon (nombre, asignacionTM[Tiempo, Materia], cupo, detalles)
+
+- Horario (Tiempo, Materia, Salon)
+
+- Tiempo (dia, hora) -- dia: lunes-sabado hora:1-13 (7am-7pm)
+
+- Profesor (nombre)
+
+
+Acciones de tipo usuario: 
+
+1. Admin 
+- CRUD Salon ()
+- CRUD Profesor ()
+- CRUD Materia ()
+
+2. Coordinador
+- CRUD Materia ()
+        - Asignar Salon ()
+                - Asignar Tiempo () a Salon y Materia
+                * Verificar si [Tiempo, Salon]=[0,0,0]
+                * Completar Horario 
+
+3. Todos 
+- Mostrar Horario de Salón (Lunes-Sabado vs 7am-7pm) con Materias
+- Mostrar Horario de Día (Salones vs 7am-7pm) con Materias
+
+- (Trabajo futuro) Solicitudes a salón (cambiar 'dia' por 'fecha' en 'Tiempo')
+
+-------------------------------------------------------------------------------
+
+---------- Idea de front-end ----------
     Tres divisiones en pantalla
 
     1- panel arriba (header) :
@@ -25,7 +66,9 @@ Idea de front-end
         - Solicitudes (trabajo futuro)
         - crear (para admin y coordinadores): Datos para crear Objeto
 
-Páginas:
+-------------------------------------------------------------------------------
+
+---------- Páginas:----------
 Home
 Login: directo con admin, admin
 Materia: Accede cada materia a una página para dar información de ella (opcional)
