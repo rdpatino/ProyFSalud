@@ -3,11 +3,8 @@
 
 <!-- 
 - Materia (nombre, asignacionTS[Tiempo, Salon], programa, cupo, semestre, Profesores)
-
 - Salon (nombre, asignacionTM[Tiempo, Materia], cupo, detalles)
-
 - Horario (Tiempo, Materia, Salon)
-
 - Tiempo (dia, hora) -- dia: lunes-sabado hora:1-13 (7am-7pm) -->
 
 <!-- INSERT INTO `horarios` (`hId`, `hDia`, `hHora`, `hMateria`, `hSalon`) VALUES ('Lunes1', 'Lunes', '1', 'Materia 1', 'Salon 1'); -->
@@ -16,7 +13,7 @@
     <h1>Horario x Salón</h1>
     <h2>Salón 1 *Ejemplo</h2>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
     
         <!-- Position Column -->
         <ng-container matColumnDef="hora">
