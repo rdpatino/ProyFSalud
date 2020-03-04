@@ -13,7 +13,7 @@
     <h1>Horario x Salón</h1>
     <h2>Salón 1 *Ejemplo</h2>
 
-    <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+    <table mat-table *ngIf="hayRegistrosHorarios(); else sin" [dataSource]="dataSource" class="mat-elevation-z8">
     
         <!-- Position Column -->
         <ng-container matColumnDef="hora">
@@ -110,6 +110,24 @@
         <td> {{ horario.hSalon }} </td>
         <td></td>
         <td></td>
+      </tr>
+      <tr *ngFor="let horariosalon of horariossalon">
+        <td> {{ horariosalon.hId }} </td>
+        <td> {{ horariosalon.hDia }} </td>
+        <td> {{ horariosalon.hHora }} </td>
+        <td> {{ horariosalon.hMateria }} </td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let horariohora of horariossalon">
+        <td> 7 </td>
+        <td> {{ horariohora.hLunes }} </td>
+        <td> {{ horariohora.hMartes }} </td>
+        <td> {{ horariohora.hMiercoes }} </td>
+        <td> {{ horariohora.hJueves }} </td>
+        <td> {{ horariohora.hViernes }} </td>
+        <td> {{ horariohora.hSabado }} </td>
       </tr>
     </table>
   
