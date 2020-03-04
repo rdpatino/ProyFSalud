@@ -11,9 +11,45 @@
 
 <div align="center">
     <h1>Horario x Salón</h1>
+ 
+    <form>
+      <h4>mat-select</h4>
+      <mat-form-field>
+        <mat-label>Favorite food</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="food">
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p> Selected food: {{selectedValue}} </p>
+      <h4>native html select</h4>
+      <mat-form-field>
+        <mat-label>Favorite car</mat-label>
+        <select matNativeControl [(ngModel)]="selectedCar" name="car">
+          <option value="" selected></option>
+          <option *ngFor="let car of cars" [value]="car.value">
+            {{car.viewValue}}
+          </option>
+        </select>
+      </mat-form-field>
+      <p> Selected car: {{selectedCar}} </p>
+    </form>
+
+
+<select [(ngModel)]="opcionSeleccionado" (change)="capturar()">
+  <option value="0">Selecciona una opción</option>
+  <option *ngFor="let dato of datos">
+    {{dato}}
+  </option>
+</select>
+
+
+  <p [hidden]="opcionSeleccionado == '0'">Haz seleccionado la opción # {{ verSeleccion }}</p>
+
     <h2>Salón 1 *Ejemplo</h2>
 
-    <table mat-table *ngIf="hayRegistrosHorarios(); else sin" [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table *ngIf="hayRegistrosHorariosSalon(); else sin" [dataSource]="dataSource" class="mat-elevation-z8">
     
         <!-- Position Column -->
         <ng-container matColumnDef="hora">
@@ -57,7 +93,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-
+<!--
     <table class="mat-elevation-z8" *ngIf="hayRegistros(); else sin">
       <tr>
         <td>Hora/Día</td>
@@ -111,65 +147,12 @@
         <td></td>
         <td></td>
       </tr>
-      <tr *ngFor="let horariosalon of horariossalon">
-        <td> {{ horariosalon.hId }} </td>
-        <td> {{ horariosalon.hDia }} </td>
-        <td> {{ horariosalon.hHora }} </td>
-        <td> {{ horariosalon.hMateria }} </td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr *ngFor="let horariohora of horariossalon">
-        <td> 7 </td>
-        <td> {{ horariohora.hLunes }} </td>
-        <td> {{ horariohora.hMartes }} </td>
-        <td> {{ horariohora.hMiercoes }} </td>
-        <td> {{ horariohora.hJueves }} </td>
-        <td> {{ horariohora.hViernes }} </td>
-        <td> {{ horariohora.hSabado }} </td>
-      </tr>
     </table>
+
+  -->
   
     <ng-template #sin>
       <p>No hay Horarios registrados.</p>
     </ng-template>
-<!-- 
-    <table class="mat-elevation-z8" *ngIf="hayRegistros(); else sin">
-        <tr>
-        <td>ID</td>
-        <td>Día</td>
-        <td>Hora</td>
-        <td>Materia</td>
-        <td>Salón</td>
-      </tr>
-      <tr *ngFor="let horario of horarios">
-        <td> {{ horario.hId }} </td>
-        <td> {{ horario.hDia }} </td>
-        <td> {{ horario.hHora }} </td>
-        <td> {{ horario.hMateria }} </td>
-        <td> {{ horario.hSalon }} </td>
-        <td> <button mat-raised-button color="warn" > Borrar </button> </td>
-        <td> <button mat-raised-button color="primary" > Seleccionar </button> </td>
-      </tr>
-    </table>
-  
-    <ng-template #sin>
-      <p>No hay Horarios registrados.</p>
-    </ng-template>
--->
-<!-- 
-    <div>
-      <p> Id: <input type="text" [(ngModel)]="horario.hId" /> </p>
-      <p> Día: <input type="text" [(ngModel)]="horario.hDia" /> </p>
-      <p> Hora: <input type="number" [(ngModel)]="horario.hHora" /> </p>
-      <p> Materia: <input type="text" [(ngModel)]="horario.hMateria" /> </p>
-      <p> Salón: <input type="text" [(ngModel)]="horario.hSalon" /> </p>
-      <p> 
-        <button mat-raised-button color="accent" > AGREGAR </button> 
-        <button mat-raised-button color="primary" > MODIFICAR </button> 
-      </p>
-    </div>
--->    
 
 </div>

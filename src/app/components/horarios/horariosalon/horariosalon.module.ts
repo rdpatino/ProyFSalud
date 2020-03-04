@@ -6,6 +6,8 @@ import { HorariosalonComponent } from './horariosalon.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../../../material.module';
+import { MatSelectModule } from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -16,7 +18,9 @@ import { MaterialModule } from '../../../material.module';
     HorariosalonRoutingModule,
     FormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    MatSelectModule,
+    MatInputModule
   ]
 })
 export class HorariosalonModule { }

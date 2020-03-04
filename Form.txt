@@ -78,3 +78,19 @@ Lista Materias
 Lista Profesores
 Lista Salones
 About/ Información 
+
+---------- Lógica para llenar filas de Horario x Salon ----------
+
+- Mostrar Horario de Salón (Lunes-Sabado vs 7am-7pm) con Materias
+{hora: '9am', lunes: 'Materia 1', martes: '', miercoles: '', jueves: 'Materia 1', viernes: '', sabado: ''},
+
+1 Obtener Horarios (`hId`, `hDia`, `hHora`, `hMateria`, `hSalon`)
+    - recorrer horarios
+        - si hSalon = salon
+            - si hDia = Lunes ... si hDia = Sabado
+                - si hHora = 1 ... si hHora = 13
+
+
+1 Obtener Horarios por Salón (`hId`, `hDia`, `hHora`, `hMateria`)
+SELECT * FROM `horarios` WHERE `hSalon` = 'Salon 1';
+

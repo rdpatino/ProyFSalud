@@ -16,7 +16,20 @@ export interface PeriodicElement {
   viernes: string;
   sabado: string;
 }
-/* 
+interface SalonSelect {
+  value: string;
+  viewValue: string;
+}
+interface Food {
+  value: string;
+  viewValue: string;
+}
+
+interface Car {
+  value: string;
+  viewValue: string;
+}
+/*
 const ELEMENT_DATA: PeriodicElement[] = [
   {hora: '7am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
   {hora: '8am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
@@ -58,39 +71,44 @@ export class HorariosalonComponent implements OnInit {
     matProfesores: ''
   };
 
-  horarioSalon2: MateriaI[] = [this.materiaNull, this.materiaNull, this.materiaNull, {matId: 1,
-    matNombre: 'materia 1',
-    matAsignacionTS: 'asignacionTS',
-    matPrograma: 'programa 1',
-    matCupo: 20,
-    matSemestre: 10,
-    matProfesores: 'profesores 1'}, this.materiaNull, this.materiaNull];
+  salonesselect: SalonSelect[] = [
+    {value: 'salon-0', viewValue: 'Salon 1'},
+    {value: 'salon-1', viewValue: 'Salon 2'},
+    {value: 'salon-2', viewValue: 'Salon 3'}
+  ];
 
-  constructor(private HorariossalonService: HorariossalonService) { }
+  //opcionSeleccionado: SalonSelect = {value: 'salon-0', viewValue: 'Salon 1'};
+  //verSeleccion: string = "";
+
+  datos;
+  // Seleccionamos o iniciamos el valor '0' del <select>
+  opcionSeleccionado: string  = '0';
+  verSeleccion: string        = '';
+
+  selected = 'option2';
+
+  selectedValue: string;
+  selectedCar: string;
+
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
+
+  cars: Car[] = [
+    {value: 'volvo', viewValue: 'Volvo'},
+    {value: 'saab', viewValue: 'Saab'},
+    {value: 'mercedes', viewValue: 'Mercedes'}
+  ];
+
+  constructor(private HorariossalonService: HorariossalonService) { this.datos = [1,2,3,4,5,6,7,8,9,10];}
 
   ngOnInit() {
     this.obtenerHorarios();
     console.log('Cuantas veces hace el ngOnInit()');
-    
-
-    let salones: string[] = ['Salon 1', 'Salon 2', 'Salon 3'];
-    let dias: string[] = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
-    let horas: number[] = [1, 2, 3, 4, 5, 6];
-    let horarioSalon: (string[] | number[])[] = [salones , dias, horas];
-    let horarioxSalon: MateriaI[] = [];
-    //let horarioSalon1: MateriaI[] = [null, null, null, null, null, null];
-
-    for (var salon of salones) {
-      //console.log(salon);
-    }
-
-    for (var horario of horarioSalon[1]) {
-      //console.log(horario);
-    }
-
 
   }
-
 
   obtenerHorarios() {
     this.HorariossalonService.obtenerHorarios()
@@ -102,38 +120,230 @@ export class HorariosalonComponent implements OnInit {
 
   hayRegistros() {
     if (this.horarios == null) {
-      //console.log('hayRegistros(): False');
       return false;
     } else {
-      //console.log('hayRegistros(): True');
-      //for (var horario of this.horarios) {
-        //console.log(horario[0]);
-      //}
       return true;
     }
   }
 
-  hayRegistrosHorarios() {
+  hayRegistrosHorariosSalon() {
     if (this.horarios == null) {
       return false;
     } else {
-        for (var horario of this.horarios) {
-          console.log(horario[0]);
-        }
+
+      //Obtener Horarios (`hId`, `hDia`, `hHora`, `hMateria`, `hSalon`)
+        //- recorrer horarios
+          //- si hSalon = salon
+              //- si hDia = Lunes ... si hDia = Sabado
+                  //- si hHora = 1 ... si hHora = 13
+
         this.dataSource = [
-          {hora: '7am', lunes: 'Materia 1', martes: '', miercoles: 'Materia1', jueves: '', viernes: '', sabado: ''},
-          {hora: '8am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '7 am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '8 am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '9 am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '10 am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '11 am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '12 am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '1 pm', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '2 pm', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '3 pm', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '4 pm', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '5 pm', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '6 pm', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
+          {hora: '7 pm', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
         ];
-        this.dataSource.push(
-          {hora: '9am', lunes: 'Materia 1', martes: '', miercoles: '', jueves: 'Materia 1', viernes: '', sabado: ''},
-        );
-        this.displayedColumns= ['hora', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
-        //this. dataSource = ELEMENT_DATA;
-      return true;
+
+        //this.dataSource.push({hora: '7am', lunes: horario[3], martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},);
+        //this.dataSource[0].hora = '10Cambio';
+
+        //console.log('Salon select: ' + this.salonesselect.values.apply);
+
+        for (var horario of this.horarios) {
+          if (horario[4] == 'Salon 1') {
+            if (horario[1] == 'Lunes') {
+              if (horario[2] == 1) {
+                this.dataSource[0].lunes = horario[3];
+              } else if (horario[2] == 2) {
+                this.dataSource[1].lunes = horario[3];
+              } else if (horario[2] == 3) {
+                this.dataSource[2].lunes = horario[3];
+              } else if (horario[2] == 4) {
+                this.dataSource[3].lunes = horario[3];
+              } else if (horario[2] == 5) {
+                this.dataSource[4].lunes = horario[3];
+              } else if (horario[2] == 6) {
+                this.dataSource[5].lunes = horario[3];
+              } else if (horario[2] == 7) {
+                this.dataSource[6].lunes = horario[3];
+              } else if (horario[2] == 8) {
+                this.dataSource[6].lunes = horario[3];
+              } else if (horario[2] == 9) {
+                this.dataSource[8].lunes = horario[3];
+              } else if (horario[2] == 10) {
+                this.dataSource[9].lunes = horario[3];
+              } else if (horario[2] == 11) {
+                this.dataSource[10].lunes = horario[3];
+              } else if (horario[2] == 12) {
+                this.dataSource[11].lunes = horario[3];
+              } else if (horario[2] == 13) {
+                this.dataSource[12].lunes = horario[3];
+              }
+            } else if (horario[1] == 'Martes') {
+              if (horario[2] == 1) {
+                this.dataSource[0].martes = horario[3];
+              } else if (horario[2] == 2) {
+                this.dataSource[1].martes = horario[3];
+              } else if (horario[2] == 3) {
+                this.dataSource[2].martes = horario[3];
+              } else if (horario[2] == 4) {
+                this.dataSource[3].martes = horario[3];
+              } else if (horario[2] == 5) {
+                this.dataSource[4].martes = horario[3];
+              } else if (horario[2] == 6) {
+                this.dataSource[5].martes = horario[3];
+              } else if (horario[2] == 7) {
+                this.dataSource[6].martes = horario[3];
+              } else if (horario[2] == 8) {
+                this.dataSource[6].martes = horario[3];
+              } else if (horario[2] == 9) {
+                this.dataSource[8].martes = horario[3];
+              } else if (horario[2] == 10) {
+                this.dataSource[9].martes = horario[3];
+              } else if (horario[2] == 11) {
+                this.dataSource[10].martes = horario[3];
+              } else if (horario[2] == 12) {
+                this.dataSource[11].martes = horario[3];
+              } else if (horario[2] == 13) {
+                this.dataSource[12].martes = horario[3];
+              }
+            } else if (horario[1] == 'Miercoles') {
+              if (horario[2] == 1) {
+                this.dataSource[0].miercoles = horario[3];
+              } else if (horario[2] == 2) {
+                this.dataSource[1].miercoles = horario[3];
+              } else if (horario[2] == 3) {
+                this.dataSource[2].miercoles = horario[3];
+              } else if (horario[2] == 4) {
+                this.dataSource[3].miercoles = horario[3];
+              } else if (horario[2] == 5) {
+                this.dataSource[4].miercoles = horario[3];
+              } else if (horario[2] == 6) {
+                this.dataSource[5].miercoles = horario[3];
+              } else if (horario[2] == 7) {
+                this.dataSource[6].miercoles = horario[3];
+              } else if (horario[2] == 8) {
+                this.dataSource[6].miercoles = horario[3];
+              } else if (horario[2] == 9) {
+                this.dataSource[8].miercoles = horario[3];
+              } else if (horario[2] == 10) {
+                this.dataSource[9].miercoles = horario[3];
+              } else if (horario[2] == 11) {
+                this.dataSource[10].miercoles = horario[3];
+              } else if (horario[2] == 12) {
+                this.dataSource[11].miercoles = horario[3];
+              } else if (horario[2] == 13) {
+                this.dataSource[12].miercoles = horario[3];
+              }
+            } else if (horario[1] == 'Jueves') {
+              if (horario[2] == 1) {
+                this.dataSource[0].jueves = horario[3];
+              } else if (horario[2] == 2) {
+                this.dataSource[1].jueves = horario[3];
+              } else if (horario[2] == 3) {
+                this.dataSource[2].jueves = horario[3];
+              } else if (horario[2] == 4) {
+                this.dataSource[3].jueves = horario[3];
+              } else if (horario[2] == 5) {
+                this.dataSource[4].jueves = horario[3];
+              } else if (horario[2] == 6) {
+                this.dataSource[5].jueves = horario[3];
+              } else if (horario[2] == 7) {
+                this.dataSource[6].jueves = horario[3];
+              } else if (horario[2] == 8) {
+                this.dataSource[6].jueves = horario[3];
+              } else if (horario[2] == 9) {
+                this.dataSource[8].jueves = horario[3];
+              } else if (horario[2] == 10) {
+                this.dataSource[9].jueves = horario[3];
+              } else if (horario[2] == 11) {
+                this.dataSource[10].jueves = horario[3];
+              } else if (horario[2] == 12) {
+                this.dataSource[11].jueves = horario[3];
+              } else if (horario[2] == 13) {
+                this.dataSource[12].jueves = horario[3];
+              }
+            } else if (horario[1] == 'Viernes') {
+              if (horario[2] == 1) {
+                this.dataSource[0].viernes = horario[3];
+              } else if (horario[2] == 2) {
+                this.dataSource[1].viernes = horario[3];
+              } else if (horario[2] == 3) {
+                this.dataSource[2].viernes = horario[3];
+              } else if (horario[2] == 4) {
+                this.dataSource[3].viernes = horario[3];
+              } else if (horario[2] == 5) {
+                this.dataSource[4].viernes = horario[3];
+              } else if (horario[2] == 6) {
+                this.dataSource[5].viernes = horario[3];
+              } else if (horario[2] == 7) {
+                this.dataSource[6].viernes = horario[3];
+              } else if (horario[2] == 8) {
+                this.dataSource[6].viernes = horario[3];
+              } else if (horario[2] == 9) {
+                this.dataSource[8].viernes = horario[3];
+              } else if (horario[2] == 10) {
+                this.dataSource[9].viernes = horario[3];
+              } else if (horario[2] == 11) {
+                this.dataSource[10].viernes = horario[3];
+              } else if (horario[2] == 12) {
+                this.dataSource[11].viernes = horario[3];
+              } else if (horario[2] == 13) {
+                this.dataSource[12].viernes = horario[3];
+              }
+            } else if (horario[1] == 'Sabado') {
+              if (horario[2] == 1) {
+                this.dataSource[0].sabado = horario[3];
+              } else if (horario[2] == 2) {
+                this.dataSource[1].sabado = horario[3];
+              } else if (horario[2] == 3) {
+                this.dataSource[2].sabado = horario[3];
+              } else if (horario[2] == 4) {
+                this.dataSource[3].sabado = horario[3];
+              } else if (horario[2] == 5) {
+                this.dataSource[4].sabado = horario[3];
+              } else if (horario[2] == 6) {
+                this.dataSource[5].sabado = horario[3];
+              } else if (horario[2] == 7) {
+                this.dataSource[6].sabado = horario[3];
+              } else if (horario[2] == 8) {
+                this.dataSource[6].sabado = horario[3];
+              } else if (horario[2] == 9) {
+                this.dataSource[8].sabado = horario[3];
+              } else if (horario[2] == 10) {
+                this.dataSource[9].sabado = horario[3];
+              } else if (horario[2] == 11) {
+                this.dataSource[10].sabado = horario[3];
+              } else if (horario[2] == 12) {
+                this.dataSource[11].sabado = horario[3];
+              } else if (horario[2] == 13) {
+                this.dataSource[12].sabado = horario[3];
+              }
+            }
+          }
+        }
+        this.displayedColumns = ['hora', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+        return true;
     }
   }
 
-  
+  capturar() {
+    // Pasamos el valor seleccionado a la variable verSeleccion
+    this.verSeleccion = this.opcionSeleccionado;
+    console.log('Salón Seleccionado: ' + this.verSeleccion);
+  }
+  capturarB() {
+    console.log('Salón Seleccionado B: ' + this.selected);
+  }
 
 /*
   crearMateria() {
