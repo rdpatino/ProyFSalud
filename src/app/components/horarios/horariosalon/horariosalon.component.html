@@ -1,4 +1,3 @@
-<p>horariosalon works!</p>
 <!-- Horario por salón: Nombre de salones -> lunes-sabado vs 7am-7pm -->
 
 <!-- 
@@ -13,41 +12,19 @@
     <h1>Horario x Salón</h1>
  
     <form>
-      <h4>mat-select</h4>
       <mat-form-field>
-        <mat-label>Favorite food</mat-label>
-        <mat-select [(ngModel)]="selectedValue" name="food">
-          <mat-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <p> Selected food: {{selectedValue}} </p>
-      <h4>native html select</h4>
-      <mat-form-field>
-        <mat-label>Favorite car</mat-label>
-        <select matNativeControl [(ngModel)]="selectedCar" name="car">
+        <mat-label>Salón</mat-label>
+        <select matNativeControl [(ngModel)]="selectedSalon" name="salon" (change)="capturar()">
           <option value="" selected></option>
-          <option *ngFor="let car of cars" [value]="car.value">
-            {{car.viewValue}}
+          <option *ngFor="let salon of salonesselect" [value]="salon.value">
+            {{salon.viewValue}}
           </option>
         </select>
       </mat-form-field>
-      <p> Selected car: {{selectedCar}} </p>
+      <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
     </form>
 
-
-<select [(ngModel)]="opcionSeleccionado" (change)="capturar()">
-  <option value="0">Selecciona una opción</option>
-  <option *ngFor="let dato of datos">
-    {{dato}}
-  </option>
-</select>
-
-
-  <p [hidden]="opcionSeleccionado == '0'">Haz seleccionado la opción # {{ verSeleccion }}</p>
-
-    <h2>Salón 1 *Ejemplo</h2>
+    <h2>Horario de clases para salón: {{selectedSalon}}</h2>
 
     <table mat-table *ngIf="hayRegistrosHorariosSalon(); else sin" [dataSource]="dataSource" class="mat-elevation-z8">
     

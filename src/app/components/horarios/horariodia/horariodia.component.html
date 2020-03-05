@@ -1,1 +1,135 @@
-<p>horariodia works!</p>
+<!-- Horario por salón: Nombre de salones -> lunes-sabado vs 7am-7pm -->
+
+<!-- 
+- Materia (nombre, asignacionTS[Tiempo, Salon], programa, cupo, semestre, Profesores)
+- Salon (nombre, asignacionTM[Tiempo, Materia], cupo, detalles)
+- Horario (Tiempo, Materia, Salon)
+- Tiempo (dia, hora) -- dia: lunes-sabado hora:1-13 (7am-7pm) -->
+
+<!-- INSERT INTO `horarios` (`hId`, `hDia`, `hHora`, `hMateria`, `hSalon`) VALUES ('Lunes1', 'Lunes', '1', 'Materia 1', 'Salon 1'); -->
+
+<div align="center">
+    <h1>Horario x Día</h1>
+ 
+    <form>
+      <mat-form-field>
+        <mat-label>Día</mat-label>
+        <select matNativeControl [(ngModel)]="selectedDia" name="dia" (change)="capturar()">
+          <option value="" selected></option>
+          <option *ngFor="let dia of diasselect" [value]="dia.value">
+            {{dia.viewValue}}
+          </option>
+        </select>
+      </mat-form-field>
+      <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
+    </form>
+
+    <h2>Horario de clases para día: {{selectedDia}}</h2>
+
+    <table mat-table *ngIf="hayRegistrosHorariosDia(); else sin" [dataSource]="dataSource" class="mat-elevation-z8">
+    
+        <!-- Position Column -->
+        <ng-container matColumnDef="hora">
+          <th mat-header-cell *matHeaderCellDef> Hora/Día </th>
+          <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="salon1">
+          <th mat-header-cell *matHeaderCellDef> Salon 1 </th>
+          <td mat-cell *matCellDef="let element"> {{element.salon1}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="salon2">
+          <th mat-header-cell *matHeaderCellDef> Salon 2 </th>
+          <td mat-cell *matCellDef="let element"> {{element.salon2}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="salon3">
+          <th mat-header-cell *matHeaderCellDef> Salon 3 </th>
+          <td mat-cell *matCellDef="let element"> {{element.salon3}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="jueves">
+            <th mat-header-cell *matHeaderCellDef> Jueves </th>
+            <td mat-cell *matCellDef="let element"> {{element.jueves}} </td>
+          </ng-container>
+          <!-- Symbol Column -->
+        <ng-container matColumnDef="viernes">
+            <th mat-header-cell *matHeaderCellDef> Viernes </th>
+            <td mat-cell *matCellDef="let element"> {{element.viernes}} </td>
+          </ng-container>
+          <!-- Symbol Column -->
+        <ng-container matColumnDef="sabado">
+            <th mat-header-cell *matHeaderCellDef> Sábado </th>
+            <td mat-cell *matCellDef="let element"> {{element.sabado}} </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+<!--
+    <table class="mat-elevation-z8" *ngIf="hayRegistros(); else sin">
+      <tr>
+        <td>Hora/Día</td>
+        <td>Lunes</td>
+        <td>Martes</td>
+        <td>Miercoles</td>
+        <td>Jueves</td>
+        <td>Viernes</td>
+        <td>Sábado</td>
+      </tr>
+      <tr>
+        <td>1: 7am</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>2: 8am</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>3: 9am</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>ID</td>
+        <td>Día</td>
+        <td>Hora</td>
+        <td>Materia</td>
+        <td>Salón</td>
+      </tr>
+      <tr *ngFor="let horario of horarios">
+        <td> {{ horario.hId }} </td>
+        <td> {{ horario.hDia }} </td>
+        <td> {{ horario.hHora }} </td>
+        <td> {{ horario.hMateria }} </td>
+        <td> {{ horario.hSalon }} </td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+  -->
+  
+    <ng-template #sin>
+      <p>No hay Horarios registrados.</p>
+    </ng-template>
+
+</div>

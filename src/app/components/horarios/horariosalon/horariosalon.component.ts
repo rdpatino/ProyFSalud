@@ -20,24 +20,6 @@ interface SalonSelect {
   value: string;
   viewValue: string;
 }
-interface Food {
-  value: string;
-  viewValue: string;
-}
-
-interface Car {
-  value: string;
-  viewValue: string;
-}
-/*
-const ELEMENT_DATA: PeriodicElement[] = [
-  {hora: '7am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
-  {hora: '8am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
-  {hora: '9am', lunes: 'Materia 1', martes: '', miercoles: '', jueves: 'Materia 1', viernes: '', sabado: ''},
-  {hora: '10am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
-  {hora: '11am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
-
-];*/
 
 @Component({
   selector: 'app-horariosalon',
@@ -45,7 +27,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./horariosalon.component.css']
 })
 export class HorariosalonComponent implements OnInit {
-/* 
+/*
   displayedColumns: string[] = ['hora', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
   dataSource = ELEMENT_DATA;
   */
@@ -71,38 +53,15 @@ export class HorariosalonComponent implements OnInit {
     matProfesores: ''
   };
 
+  selectedSalon: string;
+
   salonesselect: SalonSelect[] = [
-    {value: 'salon-0', viewValue: 'Salon 1'},
-    {value: 'salon-1', viewValue: 'Salon 2'},
-    {value: 'salon-2', viewValue: 'Salon 3'}
+    {value: 'Salon 1', viewValue: 'Salon 1'},
+    {value: 'Salon 2', viewValue: 'Salon 2'},
+    {value: 'Salon 3', viewValue: 'Salon 3'}
   ];
 
-  //opcionSeleccionado: SalonSelect = {value: 'salon-0', viewValue: 'Salon 1'};
-  //verSeleccion: string = "";
-
-  datos;
-  // Seleccionamos o iniciamos el valor '0' del <select>
-  opcionSeleccionado: string  = '0';
-  verSeleccion: string        = '';
-
-  selected = 'option2';
-
-  selectedValue: string;
-  selectedCar: string;
-
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-
-  cars: Car[] = [
-    {value: 'volvo', viewValue: 'Volvo'},
-    {value: 'saab', viewValue: 'Saab'},
-    {value: 'mercedes', viewValue: 'Mercedes'}
-  ];
-
-  constructor(private HorariossalonService: HorariossalonService) { this.datos = [1,2,3,4,5,6,7,8,9,10];}
+  constructor(private HorariossalonService: HorariossalonService) { }
 
   ngOnInit() {
     this.obtenerHorarios();
@@ -153,13 +112,11 @@ export class HorariosalonComponent implements OnInit {
           {hora: '7 pm', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},
         ];
 
-        //this.dataSource.push({hora: '7am', lunes: horario[3], martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''},);
-        //this.dataSource[0].hora = '10Cambio';
-
-        //console.log('Salon select: ' + this.salonesselect.values.apply);
+        // lógica para mostrar horario por salon
 
         for (var horario of this.horarios) {
-          if (horario[4] == 'Salon 1') {
+          //if (horario[4] == 'Salon 1') {
+          if (horario[4] == this.selectedSalon ) {
             if (horario[1] == 'Lunes') {
               if (horario[2] == 1) {
                 this.dataSource[0].lunes = horario[3];
@@ -337,12 +294,7 @@ export class HorariosalonComponent implements OnInit {
   }
 
   capturar() {
-    // Pasamos el valor seleccionado a la variable verSeleccion
-    this.verSeleccion = this.opcionSeleccionado;
-    console.log('Salón Seleccionado: ' + this.verSeleccion);
-  }
-  capturarB() {
-    console.log('Salón Seleccionado B: ' + this.selected);
+    console.log('Salón Seleccionado: ' + this.selectedSalon);
   }
 
 /*
