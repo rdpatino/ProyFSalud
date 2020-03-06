@@ -19,6 +19,12 @@ export class MateriasService {
   obtenerMaterias() {
     return this.http.get(this.URL + `ObtenerMaterias.php`);
   }
+  obtenerProfesores() {
+    return this.http.get(this.URL + `ObtenerProfesores.php`);
+  }
+  obtenerSalones() {
+    return this.http.get(this.URL + `ObtenerSalones.php`);
+  }
 
   crearMateria(materia) {
     return this.http.post(this.URL + `CrearMateria.php`, JSON.stringify(materia));

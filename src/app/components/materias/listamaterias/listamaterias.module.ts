@@ -6,6 +6,9 @@ import { ListamateriasComponent } from './listamaterias.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../../../material.module';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 @NgModule({
@@ -15,7 +18,9 @@ import { MaterialModule } from '../../../material.module';
     ListamateriasRoutingModule,
     FormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    MatSelectModule,
+    MatInputModule
   ]
 })
 export class ListamateriasModule { }

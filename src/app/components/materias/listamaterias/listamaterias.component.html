@@ -9,7 +9,7 @@
         <tr>
         <td>ID</td>
         <td>Nombre</td>
-        <td>AsignaciónTS [T,S]</td>
+        <td>Horarios</td>
         <td>Programa</td>
         <td>Cupo</td>
         <td>Semestre</td>
@@ -20,7 +20,7 @@
       <tr *ngFor="let materia of materias">
         <td> {{ materia.matId }} </td>
         <td> {{ materia.matNombre }} </td>
-        <td> {{ materia.matAsignacionTS }} </td>
+        <td> {{ materia.matHorarios }} </td>
         <td> {{ materia.matPrograma }} </td>
         <td> {{ materia.matCupo }} </td>
         <td> {{ materia.matSemestre }} </td>
@@ -35,8 +35,20 @@
     </ng-template>
 
     <div>
+      <h2>Datos Materia</h2>
+
+      <p> 1 <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" [(ngModel)]="materia.matNombre" />
+      </mat-form-field> </p>
+
+      <p> 2 <mat-form-field appearance="fill">
+        <mat-label>Detalles</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field> </p>
+
       <p> Nombre: <input type="text" [(ngModel)]="materia.matNombre" /> </p>
-      <p> AsignaciónTS: <input type="text" [(ngModel)]="materia.matAsignacionTS" /> </p>
+      <p> Horarios: <input type="text" [(ngModel)]="materia.matHorarios" /> </p>
       <p> Programa: <input type="text" [(ngModel)]="materia.matPrograma" /> </p>
       <p> Cupo: <input type="number" [(ngModel)]="materia.matCupo" /> </p>
       <p> Semestre: <input type="number" [(ngModel)]="materia.matSemestre" /> </p>
@@ -47,5 +59,47 @@
       </p>
     </div>
     
+</div>
+
+<div>
+
+  <h1>Seleción Profesor y Salones</h1>
+ 
+  <form>
+    <mat-form-field>
+      <mat-label>Salón</mat-label>
+      <select matNativeControl [(ngModel)]="selectedSalon" name="salon" (change)="capturarS()">
+        <!-- <option value="" selected></option> -->
+        <option *ngFor="let salon of salonesselect" [value]="salon.value">
+          {{salon.viewValue}}
+        </option>
+      </select>
+    </mat-form-field>
+    <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
+  </form>
+  
+  <form>
+    <mat-form-field>
+      <mat-label>Profesor</mat-label>
+      <select matNativeControl [(ngModel)]="selectedProfe" name="profe" (change)="capturarP()">
+        <!-- <option value="" selected></option> -->
+        <option *ngFor="let profe of profesoresselect" [value]="profe.value">
+          {{profe.viewValue}}
+        </option>
+      </select>
+    </mat-form-field>
+    <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
+  </form>
+  
+  <h2>Salón: {{selectedSalon}} </h2> <h2>Profesor: {{selectedProfe}} </h2>
+  
+  <div *ngIf="hayprofes(); else nou"> 
+    <button mat-raised-button color="accent" (click)="actualizarSalonesyProfes()"> Actualizar </button>
+
+    <ng-template #nou>
+    <p>No hay profes</p>
+    </ng-template>
+  </div>
+  
 </div>
   
