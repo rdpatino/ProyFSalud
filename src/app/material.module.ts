@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatFormFieldModule, MatButtonModule, MatCardModule, MatToolbarModule, MatTableModule } from '@angular/material';
+import { MatFormFieldModule, MatButtonModule, MatCardModule, MatToolbarModule, MatTableModule, MatSelectModule } from '@angular/material';
+import {MatDialogModule} from '@angular/material/dialog';
 import { from } from 'rxjs';
 
 const myModule = [
@@ -8,7 +9,9 @@ const myModule = [
   MatButtonModule,
   MatCardModule,
   MatToolbarModule,
-  MatTableModule
+  MatTableModule,
+  MatDialogModule,
+  MatSelectModule
 ];
 
 @NgModule({

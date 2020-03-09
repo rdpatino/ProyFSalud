@@ -27,3 +27,6 @@ ng g m components/horarios/horariodia -m=app --route horariodia
 
 ng g s components/horarios/horariossalon
 ng g s components/horarios/horariosdia
+
+ng g c shared/modal -m=app
+ng g c components/materias/nuevamateria -m=app

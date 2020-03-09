@@ -9,6 +9,7 @@ import { MaterialModule } from '../../../material.module';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {MatCardModule} from '@angular/material/card';
     MaterialModule,
     MatSelectModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ]
 })
 export class ListamateriasModule { }

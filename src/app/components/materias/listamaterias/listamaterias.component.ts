@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MateriasService } from '../materias.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {ModalComponent} from '../../../shared/modal/modal.component';
 
 interface SalonSelect {
   value: string;
@@ -8,6 +10,10 @@ interface SalonSelect {
 interface ProfeSelect {
   value: string;
   viewValue: string;
+}
+export interface DialogData {
+  animal: string;
+  name: string;
 }
 
 @Component({
@@ -49,19 +55,12 @@ export class ListamateriasComponent implements OnInit {
   selectedProfe: string;
 
   salonesselect: SalonSelect[];
-  /*salonesselect: SalonSelect[] = [
-    {value: 'Salon 1', viewValue: 'Salon 1'},
-    {value: 'Salon 2', viewValue: 'Salon 2'},
-    {value: 'Salon 3', viewValue: 'Salon 3'}
-  ];*/
-  profesoresselect: ProfeSelect[];
-  /*profesoresselect: SalonSelect[] = [
-    {value: 'Profe 1', viewValue: 'Profe 1'},
-    {value: 'Profe 2', viewValue: 'Profe 2'},
-    {value: 'Profe 3', viewValue: 'Profe 3'}
-  ];*/
 
-  constructor(private MateriasService: MateriasService) { }
+  profesoresselect: ProfeSelect[];
+
+
+  constructor(private MateriasService: MateriasService, 
+              public dialog: MatDialog ) { }
 
   ngOnInit() {
     this.obtenerMaterias();
@@ -184,5 +183,17 @@ export class ListamateriasComponent implements OnInit {
     }
 
   }
+
+  onNuevaMateria(){
+    this.openDialog();
+  }
+
+  openDialog():void{
+    const dialogRef = this.dialog.open(ModalComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result ${result}`);
+    });
+  }
+
 
 }

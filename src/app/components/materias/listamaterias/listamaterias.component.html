@@ -37,14 +37,12 @@
 
     <div>
       <h3> </h3>
-      <button mat-raised-button >Agregar Materia</button>
+      <button mat-raised-button (click)="onNuevaMateria()">Agregar Materia</button>
       <h3>Cuando presione Agregar Materia, se cargen salones y profesores, se muestra formulario para agregar materia: datos, agregar horarios, agregar profesores</h3>
       <h3>agregar horarios y profesores uno a uno</h3>
       <h3>* se carga al dar seleccionar los arrays tambien?</h3>
 
       <h2>Datos Materia</h2>
-
-      
 
       <mat-card class="datos-card">
         <mat-card-header>
@@ -82,7 +80,7 @@
         <mat-card-content>
           <p class="p-datos"><mat-form-field appearance="fill">
             <mat-label>Dia y Hora</mat-label>
-            <input matInput type="text" [(ngModel)]="materia.matNombre" />
+            <input matInput type="text" [(ngModel)]="materia.matHorarios" />
             </mat-form-field>
           </p>
           <form>
@@ -97,6 +95,37 @@
             </mat-form-field>
             <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
           </form>
+
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>AGREGAR</button>
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card class="datos-card">
+        <mat-card-header>
+          <mat-card-title>Profesores: id nombre detalles</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+          <form>
+            <mat-form-field>
+              <mat-label>{{materia.matProfesores}}</mat-label>
+              <select matNativeControl [(ngModel)]="materia.matProfesores" name="profe" (change)="capturarP()">
+                <!--<option value='null' selected>{{materia.matProfesores}}</option>-->
+                <option *ngFor="let profe of profesoresselect" [value]="profe.viewValue">
+                  {{profe.viewValue}}
+                </option>
+              </select>
+            </mat-form-field>
+            <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
+          </form>
+          
+          <p class="p-datos"><mat-form-field appearance="fill">
+            <mat-label>Profesor</mat-label>
+            <input matInput type="text" [(ngModel)]="materia.matProfesores" />
+            </mat-form-field>
+          </p>
 
         </mat-card-content>
         <mat-card-actions>
@@ -164,6 +193,8 @@
     <p>No hay profes</p>
     </ng-template>
   </div>
+
+
   
 </div>
   

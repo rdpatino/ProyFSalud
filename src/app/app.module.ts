@@ -13,12 +13,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { MateriasService } from './components/materias/materias.service';
 import { ListamateriasComponent } from './components/materias/listamaterias/listamaterias.component';
 import { HorariossalonService } from './components/horarios/horariossalon.service';
+import { NuevamateriaComponent } from './components/materias/nuevamateria/nuevamateria.component';
+import { ModalComponent } from './shared/modal/modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     MateriaComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    NuevamateriaComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -26,8 +31,10 @@ import { HorariossalonService } from './components/horarios/horariossalon.servic
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
+  entryComponents: [ModalComponent],
   providers: [MateriasService, HorariossalonService],
   bootstrap: [AppComponent]
 })
