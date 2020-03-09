@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../../../material.module';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import { MatInputModule } from '@angular/material/input';
     HttpClientModule,
     MaterialModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ]
 })
 export class ListamateriasModule { }

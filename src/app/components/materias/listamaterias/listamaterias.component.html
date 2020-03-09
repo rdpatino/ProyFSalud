@@ -33,19 +33,83 @@
     <ng-template #sin>
       <p>No hay materias registradas.</p>
     </ng-template>
+    
 
     <div>
+      <h3> </h3>
+      <button mat-raised-button >Agregar Materia</button>
+      <h3>Cuando presione Agregar Materia, se cargen salones y profesores, se muestra formulario para agregar materia: datos, agregar horarios, agregar profesores</h3>
+      <h3>agregar horarios y profesores uno a uno</h3>
+      <h3>* se carga al dar seleccionar los arrays tambien?</h3>
+
       <h2>Datos Materia</h2>
 
-      <p> 1 <mat-form-field appearance="fill">
-        <mat-label>Nombre</mat-label>
-        <input matInput type="text" [(ngModel)]="materia.matNombre" />
-      </mat-form-field> </p>
+      
 
-      <p> 2 <mat-form-field appearance="fill">
+      <mat-card class="datos-card">
+        <mat-card-header>
+          <mat-card-title>Datos</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p><mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" [(ngModel)]="materia.matNombre" />
+            </mat-form-field>
+          </p>
+          <p><mat-form-field appearance="fill">
+            <mat-label>Programa</mat-label>
+            <input matInput type="text" [(ngModel)]="materia.matPrograma" />
+            </mat-form-field>
+          </p>
+          <p><mat-form-field appearance="fill">
+            <mat-label>Cupo</mat-label>
+            <input matInput type="text" [(ngModel)]="materia.matCupo" />
+            </mat-form-field>
+          </p>
+          <p><mat-form-field appearance="fill">
+            <mat-label>Semestre</mat-label>
+            <input matInput type="text" [(ngModel)]="materia.matSemestre" />
+            </mat-form-field>
+          </p>
+        </mat-card-content>
+      </mat-card>
+      
+
+      <mat-card class="datos-card">
+        <mat-card-header>
+          <mat-card-title>Horarios forma: id dia hora materia salon</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="p-datos"><mat-form-field appearance="fill">
+            <mat-label>Dia y Hora</mat-label>
+            <input matInput type="text" [(ngModel)]="materia.matNombre" />
+            </mat-form-field>
+          </p>
+          <form>
+            <mat-form-field>
+              <mat-label>Salón</mat-label>
+              <select matNativeControl [(ngModel)]="selectedSalon" name="salon" (change)="capturarS()">
+                <!-- <option value="" selected></option> -->
+                <option *ngFor="let salon of salonesselect" [value]="salon.value">
+                  {{salon.viewValue}}
+                </option>
+              </select>
+            </mat-form-field>
+            <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
+          </form>
+
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>AGREGAR</button>
+        </mat-card-actions>
+      </mat-card>
+
+
+
+      <p><mat-form-field appearance="fill">
         <mat-label>Detalles</mat-label>
         <textarea matInput></textarea>
-      </mat-form-field> </p>
+      </mat-form-field></p>
 
       <p> Nombre: <input type="text" [(ngModel)]="materia.matNombre" /> </p>
       <p> Horarios: <input type="text" [(ngModel)]="materia.matHorarios" /> </p>
