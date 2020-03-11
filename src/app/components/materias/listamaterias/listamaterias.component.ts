@@ -12,6 +12,14 @@ interface ProfeSelect {
   value: string;
   viewValue: string;
 }
+interface DiaSelect {
+  value: string;
+  viewValue: string;
+}
+interface HoraSelect {
+  value: string;
+  viewValue: string;
+}
 export interface DialogData {
   animal: string;
   name: string;
@@ -73,10 +81,34 @@ export class ListamateriasComponent implements OnInit {
 
   selectedSalon: string;
   selectedProfe: string;
+  selectedDia: string;
+  selectedHora: string;
 
   salonesselect: SalonSelect[];
-
   profesoresselect: ProfeSelect[];
+  diasselect: DiaSelect[] = [
+    {value: 'lunes', viewValue: 'Lunes'},
+    {value: 'martes', viewValue: 'Martes'},
+    {value: 'miercoles', viewValue: 'Miercoles'},
+    {value: 'jueves', viewValue: 'Jueves'},
+    {value: 'viernes', viewValue: 'Viernes'},
+    {value: 'sabado', viewValue: 'Sabado'},
+  ];
+  horasselect: HoraSelect[] = [
+    {value: 'hora1', viewValue: '7 - 8 am'},
+    {value: 'hora2', viewValue: '8 - 9 am'},
+    {value: 'hora3', viewValue: '9 - 10 am'},
+    {value: 'hora4', viewValue: '10 - 11 am'},
+    {value: 'hora5', viewValue: '11 - 12 m'},
+    {value: 'hora6', viewValue: '12 - 1 pm'},
+    {value: 'hora7', viewValue: '1 - 2 pm'},
+    {value: 'hora8', viewValue: '2 - 3 pm'},
+    {value: 'hora9', viewValue: '3 - 4 pm'},
+    {value: 'hora10', viewValue: '4 - 5 pm'},
+    {value: 'hora11', viewValue: '5 - 6 pm'},
+    {value: 'hora12', viewValue: '6 - 7 pm'},
+    {value: 'hora13', viewValue: '7 - 8 pm'}
+  ];
 
 
   constructor(private MateriasService: MateriasService, private HorariossalonService: HorariossalonService,
@@ -88,6 +120,11 @@ export class ListamateriasComponent implements OnInit {
     this.obtenerSalones();
     this.obtenerHorarios();
     //this.buscarHorariosXM(this.materia);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.materias.filter = filterValue.trim().toLowerCase();
   }
 
   obtenerMaterias() {
@@ -166,7 +203,7 @@ export class ListamateriasComponent implements OnInit {
   }
 
   buscarMateria(idMateria) {
-
+console.log("cuantos tr: "+document.getElementById("myTable").getElementsByTagName("tr").length);
     this.MateriasService.buscarMateria(idMateria).subscribe(
       result => this.materia = result[0]
     );
@@ -245,6 +282,23 @@ export class ListamateriasComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result ${result}`);
     });
+  }
+
+  verificarHorarioLibre(){
+    //selectedSalon: string;
+  //selectedProfe: string;
+  //selectedDia: string;
+  //selectedHora: string;
+
+  for (const horario of this.horarios) {
+    console.log("Como quedaría: "+this.selectedDia+this.selectedHora+this.selectedSalon);
+    if (horario[0]==(this.selectedDia+this.selectedHora+this.selectedSalon)) {
+      console.log("Si es Igual: "+this.selectedDia+this.selectedHora+this.selectedSalon);
+    } else {
+      
+    }
+  }
+
   }
 
 

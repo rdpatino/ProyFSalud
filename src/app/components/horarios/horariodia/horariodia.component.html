@@ -12,14 +12,14 @@
     <h1>Horario x Día</h1>
  
     <form>
-      <mat-form-field>
+      <mat-form-field >
         <mat-label>Día</mat-label>
-        <select matNativeControl [(ngModel)]="selectedDia" name="dia" (change)="capturar()">
-          <option value="" selected></option>
-          <option *ngFor="let dia of diasselect" [value]="dia.value">
+        <mat-select [(ngModel)]="selectedDia" name="dia" (change)="capturar()">
+          <!-- <option value="" selected></option> -->
+          <mat-option *ngFor="let dia of diasselect" [value]="dia.value">
             {{dia.viewValue}}
-          </option>
-        </select>
+          </mat-option>
+        </mat-select>
       </mat-form-field>
       <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
     </form>

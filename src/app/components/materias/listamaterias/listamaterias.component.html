@@ -3,7 +3,12 @@
 <div align="center">
     <h1>LISTA DE MATERIAS</h1>
 
-    <table class="mat-elevation-z8" *ngIf="hayRegistros(); else sinMaterias">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+    </mat-form-field>
+
+    <table id="myTable" class="mat-elevation-z8" *ngIf="hayRegistros(); else sinMaterias">
         <tr>
         <td>ID</td>
         <td>Nombre</td>
@@ -27,6 +32,7 @@
         <td> <button mat-raised-button color="primary" (click)="buscarMateria(materia.matId);obtenerHorariosXM(materia.matNombre)"> Seleccionar </button> </td>
       </tr>
     </table>
+
   
     <ng-template #sinMaterias>
       <p>No hay materias registradas.</p>
@@ -55,7 +61,7 @@
     </tr>
   </table>
 
-  <ng-template #sinMaterias>
+  <ng-template #sinHorarios>
     <p>No hay horarios registrados.</p>
   </ng-template>
     
@@ -130,15 +136,26 @@
         <p>No hay horarios registrados.</p>
       </ng-template>
 
+
         <div class="p-datos">
           <mat-form-field appearance="fill">
-            <mat-label>Dia </mat-label>
-            <input matInput type="text" [(ngModel)]="materia.matHorarios" />
+            <mat-label>Dia</mat-label>
+            <mat-select  [(ngModel)]="selectedDia" name="dia">
+              <!-- <option value="" selected></option> -->
+              <mat-option *ngFor="let dia of diasselect" [value]="dia.value">
+                {{dia.viewValue}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label> Hora</mat-label>
-            <input matInput type="text" [(ngModel)]="materia.matHorarios" />
+            <mat-label>Hora</mat-label>
+            <mat-select  [(ngModel)]="selectedHora" name="hora">
+              <!-- <option value="" selected></option> -->
+              <mat-option *ngFor="let hora of horasselect" [value]="hora.value">
+                {{hora.viewValue}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
           
             <mat-form-field appearance="fill">
@@ -153,12 +170,12 @@
             <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
         </div>
 
-        <p><mat-form-field appearance="fill" style="width: 300px">
+          <mat-form-field appearance="fill" style="width: 300px">
           <mat-label>Resumen</mat-label>
           <input matInput type="text" [(ngModel)]="materia.matHorarios" />
           </mat-form-field>
-          <button mat-raised-button color="accent" >Agregar Horario</button>
-        </p>
+
+        <button mat-raised-button color="link" (click)="verificarHorarioLibre()" >Agregar Horario</button>
 
         
       </mat-card-content>
@@ -182,7 +199,7 @@
           <mat-label>Resumen</mat-label>
           <input matInput type="text" [(ngModel)]="materia.matProfesores" />
           </mat-form-field>
-          <button mat-raised-button color="accent" >Agregar Profesor</button>
+          <button mat-raised-button color="link" >Agregar Profesor</button>
         </p>
       </mat-card-content>
       <mat-card-actions>

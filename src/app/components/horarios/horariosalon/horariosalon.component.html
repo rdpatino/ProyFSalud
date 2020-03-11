@@ -14,12 +14,12 @@
     <form>
       <mat-form-field>
         <mat-label>Salón</mat-label>
-        <select matNativeControl [(ngModel)]="selectedSalon" name="salon" (change)="capturar()">
-          <option value="" selected></option>
-          <option *ngFor="let salon of salonesselect" [value]="salon.value">
+        <mat-select [(ngModel)]="selectedSalon" name="salon" (change)="capturar()">
+          <!-- <option value="" selected></option> -->
+          <mat-option *ngFor="let salon of salonesselect" [value]="salon.value">
             {{salon.viewValue}}
-          </option>
-        </select>
+          </mat-option>
+        </mat-select>
       </mat-form-field>
       <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
     </form>
