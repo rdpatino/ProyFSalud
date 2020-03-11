@@ -3,7 +3,7 @@
 <div align="center">
     <h1>LISTA DE MATERIAS</h1>
 
-    <table class="mat-elevation-z8" *ngIf="hayRegistros(); else sin">
+    <table class="mat-elevation-z8" *ngIf="hayRegistros(); else sinMaterias">
         <tr>
         <td>ID</td>
         <td>Nombre</td>
@@ -24,13 +24,40 @@
         <td> {{ materia.matSemestre }} </td>
         <td> {{ materia.matProfesores }} </td>
         <td> <button mat-raised-button color="warn" (click)="borrarMateria(materia.matId)"> Borrar </button> </td>
-        <td> <button mat-raised-button color="primary" (click)="buscarMateria(materia.matId)"> Seleccionar </button> </td>
+        <td> <button mat-raised-button color="primary" (click)="buscarMateria(materia.matId);obtenerHorariosXM(materia.matNombre)"> Seleccionar </button> </td>
       </tr>
     </table>
   
-    <ng-template #sin>
+    <ng-template #sinMaterias>
       <p>No hay materias registradas.</p>
     </ng-template>
+
+    <table class="mat-elevation-z8" *ngIf="hayRegistrosHorarios(); else sinHorarios">
+      <tr>
+      <td>ID</td>
+      <td>Dia</td>
+      <td>Hora</td>
+      <td>Materia</td>
+      <td>Salon</td>
+
+      <td>BORRAR</td>
+      <td>VER</td>
+    </tr>
+    <tr *ngFor="let horario of horarios">
+      <td> {{ horario.hId }} </td>
+      <td> {{ horario.hDia }} </td>
+      <td> {{ horario.hHora }} </td>
+      <td> {{ horario.hMateria }} </td>
+      <td> {{ horario.hSalon }} </td>
+
+      <td> <button mat-raised-button color="warn" > Borrar </button> </td>
+      <td> <button mat-raised-button color="primary" > Seleccionar </button> </td>
+    </tr>
+  </table>
+
+  <ng-template #sinMaterias>
+    <p>No hay horarios registrados.</p>
+  </ng-template>
     
 
     <div>
@@ -75,6 +102,33 @@
         <mat-card-title>Horarios: id dia hora materia salon</mat-card-title>
       </mat-card-header>
       <mat-card-content>
+
+        <table class="mat-elevation-z8" *ngIf="hayRegistrosHorariosXM(); else sinHorariosXM">
+          <tr>
+          <td>ID</td>
+          <td>Dia</td>
+          <td>Hora</td>
+          <td>Materia</td>
+          <td>Salon</td>
+    
+          <td>BORRAR</td>
+          <td>VER</td>
+        </tr>
+        <tr *ngFor="let horario of horarios">
+          <td> {{ horarioxm.hId }} </td>
+          <td> {{ horarioxm.hDia }} </td>
+          <td> {{ horarioxm.hHora }} </td>
+          <td> {{ horarioxm.hMateria }} </td>
+          <td> {{ horarioxm.hSalon }} </td>
+    
+          <td> <button mat-raised-button color="warn" > Borrar </button> </td>
+          <td> <button mat-raised-button color="primary" > Seleccionar </button> </td>
+        </tr>
+      </table>
+    
+      <ng-template #sinHorariosXM>
+        <p>No hay horarios registrados.</p>
+      </ng-template>
 
         <div class="p-datos">
           <mat-form-field appearance="fill">

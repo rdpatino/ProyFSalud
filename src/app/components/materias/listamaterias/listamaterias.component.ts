@@ -46,6 +46,15 @@ export class ListamateriasComponent implements OnInit {
       hSalon: null,
     };
 
+    horariosxm = null;
+    horarioxm = {
+      hId: null,
+      hDia: null,
+      hHora: null,
+      hMateria: null,
+      hSalon: null,
+    };
+
 
   salones = null;
   salon = {
@@ -77,7 +86,7 @@ export class ListamateriasComponent implements OnInit {
     this.obtenerMaterias();
     this.obtenerProfesores();
     this.obtenerSalones();
-    //this.obtenerHorarios();
+    this.obtenerHorarios();
     //this.buscarHorariosXM(this.materia);
   }
 
@@ -105,7 +114,13 @@ export class ListamateriasComponent implements OnInit {
     .subscribe(
       result => this.horarios = result
     );
-    console.log('Obtiene Horarios x Materia');
+  }
+
+  obtenerHorariosXM(idMateria) {
+    console.log("busca con:" + idMateria);
+    this.HorariossalonService.ObtenerHorariosXM(idMateria).subscribe(
+      result => this.horariosxm = result
+    );
   }
 
   crearMateria() {
@@ -151,6 +166,7 @@ export class ListamateriasComponent implements OnInit {
   }
 
   buscarMateria(idMateria) {
+
     this.MateriasService.buscarMateria(idMateria).subscribe(
       result => this.materia = result[0]
     );
@@ -160,6 +176,21 @@ export class ListamateriasComponent implements OnInit {
 
   hayRegistros() {
     if (this.materias == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  hayRegistrosHorarios() {
+    if (this.horarios == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  hayRegistrosHorariosXM() {
+    if (this.horariosxm == null) {
       return false;
     } else {
       return true;
