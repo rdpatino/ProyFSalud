@@ -155,6 +155,7 @@ export class ListamateriasComponent implements OnInit {
       result => this.materia = result[0]
     );
     console.log(this.materia);
+    this.actualizarSalonesyProfes();
   }
 
   hayRegistros() {
@@ -198,6 +199,9 @@ export class ListamateriasComponent implements OnInit {
     for (const salon of this.salones) {
       this.salonesselect.push({value: salon[0], viewValue: salon[1]});
     }
+
+    this.profesoresselect.shift();
+    this.salonesselect.shift();
 
   }
 

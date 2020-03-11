@@ -8,7 +8,7 @@ table {
   }
 
   .container {
-    margin-top: 25px;
+    margin-top: 10px;
     justify-content: center;
   };
   
@@ -23,4 +23,8 @@ p {
 .mat-form-field{
   margin-left: 10px;
   margin-right: 10px;
+}
+
+h2 {
+  margin-bottom: 5px;
 }

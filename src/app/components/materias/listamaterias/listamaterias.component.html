@@ -1,5 +1,3 @@
-<p>listamaterias works!</p>
-
 <!-- Materia (nombre, asignacionTS[Tiempo, Salon], programa, cupo, semestre, Profesores) -->
 <!--  -->
 <div align="center">
@@ -37,9 +35,13 @@
 
     <div>
       <h3> </h3>
-      <button mat-raised-button (click)="onNuevaMateria()">Agregar Materia</button>
+      <!-- <button mat-raised-button (click)="onNuevaMateria()">Agregar Materia</button> -->
+      <div *ngIf="hayprofes(); else nou"> 
+        <button mat-raised-button color="accent" (click)="actualizarSalonesyProfes()"> Formulario Materia </button>
+        
+      </div>
+<ng-template #nou>
       
-
       <h2>Datos Materia</h2>
   <div class="container">
     <mat-card class="datos-card">
@@ -74,7 +76,7 @@
       </mat-card-header>
       <mat-card-content>
 
-        <p class="p-datos">
+        <div class="p-datos">
           <mat-form-field appearance="fill">
             <mat-label>Dia </mat-label>
             <input matInput type="text" [(ngModel)]="materia.matHorarios" />
@@ -84,9 +86,8 @@
             <mat-label> Hora</mat-label>
             <input matInput type="text" [(ngModel)]="materia.matHorarios" />
           </mat-form-field>
-        </p>
-          <form>
-            <mat-form-field>
+          
+            <mat-form-field appearance="fill">
               <mat-label>Salón</mat-label>
               <mat-select  [(ngModel)]="selectedSalon" name="salon" (change)="capturarS()">
                 <!-- <option value="" selected></option> -->
@@ -96,8 +97,7 @@
               </mat-select>
             </mat-form-field>
             <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
-          </form>
-        
+        </div>
 
         <p><mat-form-field appearance="fill" style="width: 300px">
           <mat-label>Resumen</mat-label>
@@ -113,7 +113,7 @@
       </mat-card-header>
       <mat-card-content>
         <form>
-          <mat-form-field>
+          <mat-form-field appearance="fill">
             <mat-label>{{materia.matProfesores}}</mat-label>
             <mat-select  [(ngModel)]="materia.matProfesores" name="profe" (change)="capturarP()">
               <!--<option value='null' selected>{{materia.matProfesores}}</option>-->
@@ -136,13 +136,16 @@
         <button mat-raised-button color="primary" (click)="editarMateria()">MODIFICAR MATERIA</button>
       </mat-card-actions>
     </mat-card>
-  </div>  
+  </div> 
 
+</ng-template>
 
+<!--
       <p><mat-form-field appearance="fill">
         <mat-label>Detalles</mat-label>
         <textarea matInput></textarea>
       </mat-form-field></p>
+-->
 
       <p> Nombre: <input type="text" [(ngModel)]="materia.matNombre" /> </p>
       <p> Horarios: <input type="text" [(ngModel)]="materia.matHorarios" /> </p>
@@ -155,49 +158,41 @@
         <button mat-raised-button color="primary" (click)="editarMateria()"> MODIFICAR </button> 
       </p>
     </div>
-    
 </div>
 
 <div>
 
+  <!--
   <h1>Seleción Profesor y Salones</h1>
  
   <form>
     <mat-form-field>
       <mat-label>Salón</mat-label>
       <mat-select  [(ngModel)]="selectedSalon" name="salon" (change)="capturarS()">
-        <!-- <option value="" selected></option> -->
         <mat-option *ngFor="let salon of salonesselect" [value]="salon.value">
           {{salon.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
   </form>
   
   <form>
     <mat-form-field>
       <mat-label>Profesor</mat-label>
       <mat-select [(ngModel)]="selectedProfe" name="profe" (change)="capturarP()">
-        <!-- <option value="" selected></option> -->
         <mat-option *ngFor="let profe of profesoresselect" [value]="profe.value">
           {{profe.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
   </form>
   
   <h2>Salón: {{selectedSalon}} </h2> <h2>Profesor: {{selectedProfe}} </h2>
   
-  <div *ngIf="hayprofes(); else nou"> 
+  <div *ngIf="hayprofes()"> 
     <button mat-raised-button color="accent" (click)="actualizarSalonesyProfes()"> Actualizar </button>
-
-    <ng-template #nou>
-    <p>No hay profes</p>
-    </ng-template>
   </div>
-
+-->
 
   
 </div>
