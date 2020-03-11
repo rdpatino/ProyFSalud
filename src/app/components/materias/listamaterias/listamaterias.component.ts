@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MateriasService } from '../materias.service';
+import { HorariossalonService } from '../../horarios/horariossalon.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {ModalComponent} from '../../../shared/modal/modal.component';
 
@@ -36,6 +37,16 @@ export class ListamateriasComponent implements OnInit {
     matProfesores: null,
   };
 
+  horarios = null;
+    horario = {
+      hId: null,
+      hDia: null,
+      hHora: null,
+      hMateria: null,
+      hSalon: null,
+    };
+
+
   salones = null;
   salon = {
     sId: null,
@@ -59,18 +70,15 @@ export class ListamateriasComponent implements OnInit {
   profesoresselect: ProfeSelect[];
 
 
-  constructor(private MateriasService: MateriasService, 
+  constructor(private MateriasService: MateriasService, private HorariossalonService: HorariossalonService,
               public dialog: MatDialog ) { }
 
   ngOnInit() {
     this.obtenerMaterias();
     this.obtenerProfesores();
     this.obtenerSalones();
-
-    console.log('Materias: ' + this.materias);
-    console.log('Profesores: ' + this.profesores);
-    console.log('Salones: ' + this.salones);
-
+    //this.obtenerHorarios();
+    //this.buscarHorariosXM(this.materia);
   }
 
   obtenerMaterias() {
@@ -90,6 +98,14 @@ export class ListamateriasComponent implements OnInit {
     .subscribe(
       result => this.salones = result
     );
+  }
+
+  obtenerHorarios() {
+    this.HorariossalonService.obtenerHorarios()
+    .subscribe(
+      result => this.horarios = result
+    );
+    console.log('Obtiene Horarios x Materia');
   }
 
   crearMateria() {
@@ -135,10 +151,10 @@ export class ListamateriasComponent implements OnInit {
   }
 
   buscarMateria(idMateria) {
-    console.log(this.materia);
     this.MateriasService.buscarMateria(idMateria).subscribe(
       result => this.materia = result[0]
     );
+    console.log(this.materia);
   }
 
   hayRegistros() {
@@ -148,6 +164,7 @@ export class ListamateriasComponent implements OnInit {
       return true;
     }
   }
+
 
   hayprofes() {
     if (this.profesoresselect == null) {

@@ -10,7 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [ListamateriasComponent],
@@ -23,7 +23,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSelectModule,
     MatInputModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatListModule
   ]
 })
 export class ListamateriasModule { }

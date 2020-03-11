@@ -20,6 +20,11 @@ export class HorariossalonService {
   obtenerSalones() {
     return this.http.get(this.URL + `ObtenerSalones.php`);
   }
+  /*
+  buscarHorariosXM(hMateria: String) {
+    return this.http.get(this.URL + `BuscarHorariosXM.php?hMateria=${hMateria}`);
+  }
+  */
 /*
   crearHorario(horario) {
     return this.http.post(this.URL + `CrearMateria.php`, JSON.stringify(horario));
