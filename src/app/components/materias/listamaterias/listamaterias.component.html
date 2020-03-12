@@ -29,7 +29,7 @@
         <td> {{ materia.matSemestre }} </td>
         <td> {{ materia.matProfesores }} </td>
         <td> <button mat-raised-button color="warn" (click)="borrarMateria(materia.matId)"> Borrar </button> </td>
-        <td> <button mat-raised-button color="primary" (click)="buscarMateria(materia.matId);obtenerHorariosXM(materia.matNombre)"> Seleccionar </button> </td>
+        <td> <button mat-raised-button color="primary" (click)="buscarMateria(materia.matId)"> Seleccionar </button> </td>
       </tr>
     </table>
 
@@ -104,9 +104,11 @@
         </p>
         
       </mat-card-content>
+
       <mat-card-header>
         <mat-card-title>Horarios: id dia hora materia salon</mat-card-title>
       </mat-card-header>
+      
       <mat-card-content>
 
         <table class="mat-elevation-z8" *ngIf="hayRegistrosHorariosXM(); else sinHorariosXM">
@@ -120,7 +122,7 @@
           <td>BORRAR</td>
           <td>VER</td>
         </tr>
-        <tr *ngFor="let horario of horarios">
+        <tr *ngFor="let horarioxm of horariosxm">
           <td> {{ horarioxm.hId }} </td>
           <td> {{ horarioxm.hDia }} </td>
           <td> {{ horarioxm.hHora }} </td>
@@ -130,18 +132,15 @@
           <td> <button mat-raised-button color="warn" > Borrar </button> </td>
           <td> <button mat-raised-button color="primary" > Seleccionar </button> </td>
         </tr>
-      </table>
-    
-      <ng-template #sinHorariosXM>
+        </table>
+        <ng-template #sinHorariosXM>
         <p>No hay horarios registrados.</p>
-      </ng-template>
+        </ng-template>
 
-
-        <div class="p-datos">
+        <div>
           <mat-form-field appearance="fill">
             <mat-label>Dia</mat-label>
             <mat-select  [(ngModel)]="selectedDia" name="dia">
-              <!-- <option value="" selected></option> -->
               <mat-option *ngFor="let dia of diasselect" [value]="dia.value">
                 {{dia.viewValue}}
               </mat-option>
@@ -151,33 +150,28 @@
           <mat-form-field appearance="fill">
             <mat-label>Hora</mat-label>
             <mat-select  [(ngModel)]="selectedHora" name="hora">
-              <!-- <option value="" selected></option> -->
               <mat-option *ngFor="let hora of horasselect" [value]="hora.value">
                 {{hora.viewValue}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           
-            <mat-form-field appearance="fill">
-              <mat-label>Salón</mat-label>
-              <mat-select  [(ngModel)]="selectedSalon" name="salon" (change)="capturarS()">
-                <!-- <option value="" selected></option> -->
-                <mat-option *ngFor="let salon of salonesselect" [value]="salon.value">
-                  {{salon.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
+          <mat-form-field appearance="fill">
+            <mat-label>Salón</mat-label>
+            <mat-select  [(ngModel)]="selectedSalon" name="salon" (change)="capturarS()">
+              <mat-option *ngFor="let salon of salonesselect" [value]="salon.value">
+                {{salon.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-
           <mat-form-field appearance="fill" style="width: 300px">
-          <mat-label>Resumen</mat-label>
-          <input matInput type="text" [(ngModel)]="materia.matHorarios" />
+            <mat-label>Resumen</mat-label>
+            <input matInput type="text" [(ngModel)]="materia.matHorarios" />
           </mat-form-field>
 
         <button mat-raised-button color="link" (click)="verificarHorarioLibre()" >Agregar Horario</button>
 
-        
       </mat-card-content>
       <mat-card-header>
         <mat-card-title>Profesores: id nombre detalles</mat-card-title>

@@ -3,6 +3,7 @@ import { MateriasService } from '../materias.service';
 import { HorariossalonService } from '../../horarios/horariossalon.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {ModalComponent} from '../../../shared/modal/modal.component';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 interface SalonSelect {
   value: string;
@@ -126,6 +127,21 @@ export class ListamateriasComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.materias.filter = filterValue.trim().toLowerCase();
   }
+/*
+  form = new FormGroup({
+    dia: new FormControl('', Validators.required),
+    hora: new FormControl('', Validators.required),
+    salon: new FormControl('', Validators.required)
+  });
+  get f(){
+    return this.form.controls;
+  }
+ 
+  submit(){
+      if(this.form.status === 'VALID'){
+        console.log(this.form.value);
+      }
+  } */
 
   obtenerMaterias() {
     this.MateriasService.obtenerMaterias()
@@ -152,12 +168,26 @@ export class ListamateriasComponent implements OnInit {
       result => this.horarios = result
     );
   }
-
+/*
   obtenerHorariosXM(idMateria) {
     console.log("busca con:" + idMateria);
     this.HorariossalonService.ObtenerHorariosXM(idMateria).subscribe(
       result => this.horariosxm = result
     );
+  } */
+
+  obtenerHorariosXM(idMateria) {
+    console.log("busca con:" + idMateria);
+    
+    for (const horario of this.horarios) {
+      if (horario[3]==idMateria) {
+        this.horariosxm.push(horario);
+      } else {
+        
+      }
+      console.log("Horarios x Materia: "+ this.horariosxm);
+    }
+
   }
 
   crearMateria() {
@@ -209,6 +239,7 @@ console.log("cuantos tr: "+document.getElementById("myTable").getElementsByTagNa
     );
     console.log(this.materia);
     this.actualizarSalonesyProfes();
+    
   }
 
   hayRegistros() {
@@ -227,6 +258,7 @@ console.log("cuantos tr: "+document.getElementById("myTable").getElementsByTagNa
   }
 
   hayRegistrosHorariosXM() {
+  
     if (this.horariosxm == null) {
       return false;
     } else {
@@ -289,9 +321,9 @@ console.log("cuantos tr: "+document.getElementById("myTable").getElementsByTagNa
   //selectedProfe: string;
   //selectedDia: string;
   //selectedHora: string;
-
+  console.log("Como quedaría: "+this.selectedDia+this.selectedHora+this.selectedSalon);
   for (const horario of this.horarios) {
-    console.log("Como quedaría: "+this.selectedDia+this.selectedHora+this.selectedSalon);
+    
     if (horario[0]==(this.selectedDia+this.selectedHora+this.selectedSalon)) {
       console.log("Si es Igual: "+this.selectedDia+this.selectedHora+this.selectedSalon);
     } else {

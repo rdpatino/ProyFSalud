@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ListamateriasComponent],
@@ -24,7 +25,8 @@ import {MatListModule} from '@angular/material/list';
     MatInputModule,
     MatCardModule,
     MatDialogModule,
-    MatListModule
+    MatListModule,
+    ReactiveFormsModule
   ]
 })
 export class ListamateriasModule { }
