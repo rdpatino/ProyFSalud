@@ -20,10 +20,10 @@ export class HorariossalonService {
   obtenerSalones() {
     return this.http.get(this.URL + `ObtenerSalones.php`);
   }
-  
+  /*
   ObtenerHorariosXM(hMateria: string) {
     return this.http.get(this.URL + `BuscarHorariosXM.php?hMateria=${hMateria}`);
-  }
+  } */
   
 /*
   crearHorario(horario) {

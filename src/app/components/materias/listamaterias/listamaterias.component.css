@@ -1,7 +1,16 @@
 table {
     width: 80%;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+.tr-title{
+  background-color: rgb(190, 190, 190);
+  color: black;
+}
 
 .datos-card {
     max-width: 80%;

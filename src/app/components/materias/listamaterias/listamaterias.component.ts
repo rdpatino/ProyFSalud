@@ -25,6 +25,13 @@ export interface DialogData {
   animal: string;
   name: string;
 }
+export interface HorarioXM {
+  id: string;
+  dia: string;
+  hora: string;
+  materia: string;
+  salon: string;
+}
 
 @Component({
   selector: 'app-listamaterias',
@@ -55,6 +62,10 @@ export class ListamateriasComponent implements OnInit {
       hSalon: null,
     };
 
+    //horariosxm: HorarioXM[] = [{id: '', dia: '', hora: '', materia: '', salon: ''}];
+    horariosxm: HorarioXM[];
+
+/*
     horariosxm = null;
     horarioxm = {
       hId: null,
@@ -63,7 +74,7 @@ export class ListamateriasComponent implements OnInit {
       hMateria: null,
       hSalon: null,
     };
-
+*/
 
   salones = null;
   salon = {
@@ -88,27 +99,27 @@ export class ListamateriasComponent implements OnInit {
   salonesselect: SalonSelect[];
   profesoresselect: ProfeSelect[];
   diasselect: DiaSelect[] = [
-    {value: 'lunes', viewValue: 'Lunes'},
-    {value: 'martes', viewValue: 'Martes'},
-    {value: 'miercoles', viewValue: 'Miercoles'},
-    {value: 'jueves', viewValue: 'Jueves'},
-    {value: 'viernes', viewValue: 'Viernes'},
-    {value: 'sabado', viewValue: 'Sabado'},
+    {value: 'Lunes', viewValue: 'Lunes'},
+    {value: 'Martes', viewValue: 'Martes'},
+    {value: 'Miercoles', viewValue: 'Miercoles'},
+    {value: 'Jueves', viewValue: 'Jueves'},
+    {value: 'Viernes', viewValue: 'Viernes'},
+    {value: 'Sabado', viewValue: 'Sabado'},
   ];
   horasselect: HoraSelect[] = [
-    {value: 'hora1', viewValue: '7 - 8 am'},
-    {value: 'hora2', viewValue: '8 - 9 am'},
-    {value: 'hora3', viewValue: '9 - 10 am'},
-    {value: 'hora4', viewValue: '10 - 11 am'},
-    {value: 'hora5', viewValue: '11 - 12 m'},
-    {value: 'hora6', viewValue: '12 - 1 pm'},
-    {value: 'hora7', viewValue: '1 - 2 pm'},
-    {value: 'hora8', viewValue: '2 - 3 pm'},
-    {value: 'hora9', viewValue: '3 - 4 pm'},
-    {value: 'hora10', viewValue: '4 - 5 pm'},
-    {value: 'hora11', viewValue: '5 - 6 pm'},
-    {value: 'hora12', viewValue: '6 - 7 pm'},
-    {value: 'hora13', viewValue: '7 - 8 pm'}
+    {value: 'H1', viewValue: '7 - 8 am'},
+    {value: 'H2', viewValue: '8 - 9 am'},
+    {value: 'H3', viewValue: '9 - 10 am'},
+    {value: 'H4', viewValue: '10 - 11 am'},
+    {value: 'H5', viewValue: '11 - 12 m'},
+    {value: 'H6', viewValue: '12 - 1 pm'},
+    {value: 'H7', viewValue: '1 - 2 pm'},
+    {value: 'H8', viewValue: '2 - 3 pm'},
+    {value: 'H9', viewValue: '3 - 4 pm'},
+    {value: 'H10', viewValue: '4 - 5 pm'},
+    {value: 'H11', viewValue: '5 - 6 pm'},
+    {value: 'H12', viewValue: '6 - 7 pm'},
+    {value: 'H13', viewValue: '7 - 8 pm'}
   ];
 
 
@@ -177,17 +188,20 @@ export class ListamateriasComponent implements OnInit {
   } */
 
   obtenerHorariosXM(idMateria) {
-    console.log("busca con:" + idMateria);
-    
-    for (const horario of this.horarios) {
-      if (horario[3]==idMateria) {
-        this.horariosxm.push(horario);
-      } else {
-        
-      }
-      console.log("Horarios x Materia: "+ this.horariosxm);
-    }
+    console.log("Obtiene horarios con: " + idMateria);
+    this.horariosxm = [{id: '', dia: '', hora: '', materia: '', salon: ''}];
 
+    for (const horario of this.horarios) {
+      //console.log("Horario en 3: " + horario[3]);
+      if (horario[3] == idMateria) {
+        this.horariosxm.push({id: horario[0], dia: horario[1], hora: horario[2], materia: horario[3], salon: horario[4]});
+        console.log("Horarios x Materia: "+ horario[0]);
+      } else {
+
+      }
+      
+    }
+    this.horariosxm.shift();
   }
 
   crearMateria() {
@@ -233,12 +247,13 @@ export class ListamateriasComponent implements OnInit {
   }
 
   buscarMateria(idMateria) {
-console.log("cuantos tr: "+document.getElementById("myTable").getElementsByTagName("tr").length);
+    console.log("cuantos tr: "+document.getElementById("myTable").getElementsByTagName("tr").length);
     this.MateriasService.buscarMateria(idMateria).subscribe(
       result => this.materia = result[0]
     );
-    console.log(this.materia);
+    //console.log(this.materia);
     this.actualizarSalonesyProfes();
+    //this.obtenerHorariosXM(this.materia.matNombre);
     
   }
 
@@ -258,7 +273,6 @@ console.log("cuantos tr: "+document.getElementById("myTable").getElementsByTagNa
   }
 
   hayRegistrosHorariosXM() {
-  
     if (this.horariosxm == null) {
       return false;
     } else {
@@ -283,9 +297,9 @@ console.log("cuantos tr: "+document.getElementById("myTable").getElementsByTagNa
   }
 
   actualizarSalonesyProfes() {
-    console.log('-Materias: ' + this.materias);
-    console.log('-Profesores: ' + this.profesores);
-    console.log('-Salones: ' + this.salones);
+    //console.log('-Materias: ' + this.materias);
+    //console.log('-Profesores: ' + this.profesores);
+    //console.log('-Salones: ' + this.salones);
 
     this.salonesselect = [{value: '', viewValue: ''}];
     this.profesoresselect = [{value: '', viewValue: ''}];
@@ -324,10 +338,10 @@ console.log("cuantos tr: "+document.getElementById("myTable").getElementsByTagNa
   console.log("Como quedaría: "+this.selectedDia+this.selectedHora+this.selectedSalon);
   for (const horario of this.horarios) {
     
-    if (horario[0]==(this.selectedDia+this.selectedHora+this.selectedSalon)) {
-      console.log("Si es Igual: "+this.selectedDia+this.selectedHora+this.selectedSalon);
+    if (horario[0]!=(this.selectedDia+this.selectedHora+this.selectedSalon)) {
+      console.log("No es Igual a: "+horario[0]);
     } else {
-      
+      console.log("Si es Igual: "+this.selectedDia+this.selectedHora+this.selectedSalon);
     }
   }
 

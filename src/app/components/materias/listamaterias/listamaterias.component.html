@@ -9,7 +9,7 @@
     </mat-form-field>
 
     <table id="myTable" class="mat-elevation-z8" *ngIf="hayRegistros(); else sinMaterias">
-        <tr>
+        <tr class="tr-title">
         <td>ID</td>
         <td>Nombre</td>
         <td>Horarios</td>
@@ -29,15 +29,13 @@
         <td> {{ materia.matSemestre }} </td>
         <td> {{ materia.matProfesores }} </td>
         <td> <button mat-raised-button color="warn" (click)="borrarMateria(materia.matId)"> Borrar </button> </td>
-        <td> <button mat-raised-button color="primary" (click)="buscarMateria(materia.matId)"> Seleccionar </button> </td>
+        <td> <button mat-raised-button color="primary" (click)="buscarMateria(materia.matId); this.obtenerHorariosXM(materia.matNombre)"> Seleccionar </button> </td>
       </tr>
     </table>
-
-  
     <ng-template #sinMaterias>
       <p>No hay materias registradas.</p>
     </ng-template>
-
+<!--
     <table class="mat-elevation-z8" *ngIf="hayRegistrosHorarios(); else sinHorarios">
       <tr>
       <td>ID</td>
@@ -60,18 +58,17 @@
       <td> <button mat-raised-button color="primary" > Seleccionar </button> </td>
     </tr>
   </table>
-
   <ng-template #sinHorarios>
     <p>No hay horarios registrados.</p>
   </ng-template>
-    
+-->
 
     <div>
       <h3> </h3>
       <!-- <button mat-raised-button (click)="onNuevaMateria()">Agregar Materia</button> -->
       <div *ngIf="hayprofes(); else nou"> 
         <button mat-raised-button color="accent" (click)="actualizarSalonesyProfes()"> Formulario Materia </button>
-        
+        <h3> </h3>
       </div>
 <ng-template #nou>
       
@@ -112,7 +109,7 @@
       <mat-card-content>
 
         <table class="mat-elevation-z8" *ngIf="hayRegistrosHorariosXM(); else sinHorariosXM">
-          <tr>
+          <tr class="tr-title">
           <td>ID</td>
           <td>Dia</td>
           <td>Hora</td>
@@ -123,16 +120,17 @@
           <td>VER</td>
         </tr>
         <tr *ngFor="let horarioxm of horariosxm">
-          <td> {{ horarioxm.hId }} </td>
-          <td> {{ horarioxm.hDia }} </td>
-          <td> {{ horarioxm.hHora }} </td>
-          <td> {{ horarioxm.hMateria }} </td>
-          <td> {{ horarioxm.hSalon }} </td>
+          <td> {{ horarioxm.id }} </td>
+          <td> {{ horarioxm.dia }} </td>
+          <td> {{ horarioxm.hora }} </td>
+          <td> {{ horarioxm.materia }} </td>
+          <td> {{ horarioxm.salon }} </td>
     
           <td> <button mat-raised-button color="warn" > Borrar </button> </td>
           <td> <button mat-raised-button color="primary" > Seleccionar </button> </td>
         </tr>
         </table>
+
         <ng-template #sinHorariosXM>
         <p>No hay horarios registrados.</p>
         </ng-template>
@@ -167,7 +165,7 @@
         </div>
           <mat-form-field appearance="fill" style="width: 300px">
             <mat-label>Resumen</mat-label>
-            <input matInput type="text" [(ngModel)]="materia.matHorarios" />
+            <input matInput type="text" [(ngModel)]="selectedDia+selectedHora+selectedSalon" />
           </mat-form-field>
 
         <button mat-raised-button color="link" (click)="verificarHorarioLibre()" >Agregar Horario</button>
