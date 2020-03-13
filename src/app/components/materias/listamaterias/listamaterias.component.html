@@ -137,7 +137,7 @@
 
         <div>
           <mat-form-field appearance="fill">
-            <mat-label>Dia</mat-label>
+            <mat-label>Día</mat-label>
             <mat-select  [(ngModel)]="selectedDia" name="dia">
               <mat-option *ngFor="let dia of diasselect" [value]="dia.value">
                 {{dia.viewValue}}
@@ -195,7 +195,7 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="accent" (click)="crearMateria()">AGREGAR MATERIA</button>
+        <button mat-raised-button color="accent" (click)="verificarMateria()">AGREGAR MATERIA</button>
         <button mat-raised-button color="primary" (click)="editarMateria()">MODIFICAR MATERIA</button>
       </mat-card-actions>
     </mat-card>

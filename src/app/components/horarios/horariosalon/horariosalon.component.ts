@@ -53,20 +53,31 @@ export class HorariosalonComponent implements OnInit {
     matProfesores: ''
   };
 
+  salones = null;
+  salon = {
+    sId: null,
+    sNombre: null,
+    sCupo: null,
+    sDetalles: null,
+  };
+
   selectedSalon: string;
 
+  salonesselect: SalonSelect[];
+/*
   salonesselect: SalonSelect[] = [
     {value: 'Salon 1', viewValue: 'Salon 1'},
     {value: 'Salon 2', viewValue: 'Salon 2'},
     {value: 'Salon 3', viewValue: 'Salon 3'}
-  ];
+  ]; */
 
   constructor(private HorariossalonService: HorariossalonService) { }
 
   ngOnInit() {
     this.obtenerHorarios();
-    console.log('Cuantas veces hace el ngOnInit()');
-
+    this.obtenerSalones();
+    //setTimeout(function(){alert("Hello"); }, 3000);
+    //this.actualizarSalones();
   }
 
   obtenerHorarios() {
@@ -77,11 +88,19 @@ export class HorariosalonComponent implements OnInit {
     console.log('Obtiene Horarios');
   }
 
-  hayRegistros() {
-    if (this.horarios == null) {
-      return false;
-    } else {
+  obtenerSalones() {
+    this.HorariossalonService.obtenerSalones()
+    .subscribe(
+      result => this.salones = result
+    );
+    console.log('Obtiene Salones');
+  }
+
+  haySalones() {
+    if (this.salonesselect == null) {
       return true;
+    } else {
+      return false;
     }
   }
 
@@ -118,171 +137,171 @@ export class HorariosalonComponent implements OnInit {
           //if (horario[4] == 'Salon 1') {
           if (horario[4] == this.selectedSalon ) {
             if (horario[1] == 'Lunes') {
-              if (horario[2] == 1) {
+              if (horario[2] == 'H7-8') {
                 this.dataSource[0].lunes = horario[3];
-              } else if (horario[2] == 2) {
+              } else if (horario[2] == 'H8-9') {
                 this.dataSource[1].lunes = horario[3];
-              } else if (horario[2] == 3) {
+              } else if (horario[2] == 'H9-10') {
                 this.dataSource[2].lunes = horario[3];
-              } else if (horario[2] == 4) {
+              } else if (horario[2] == 'H10-11') {
                 this.dataSource[3].lunes = horario[3];
-              } else if (horario[2] == 5) {
+              } else if (horario[2] == 'H11-12') {
                 this.dataSource[4].lunes = horario[3];
-              } else if (horario[2] == 6) {
+              } else if (horario[2] == 'H12-1') {
                 this.dataSource[5].lunes = horario[3];
-              } else if (horario[2] == 7) {
+              } else if (horario[2] == 'H1-2') {
                 this.dataSource[6].lunes = horario[3];
-              } else if (horario[2] == 8) {
+              } else if (horario[2] == 'H2-3') {
                 this.dataSource[6].lunes = horario[3];
-              } else if (horario[2] == 9) {
+              } else if (horario[2] == 'H3-4') {
                 this.dataSource[8].lunes = horario[3];
-              } else if (horario[2] == 10) {
+              } else if (horario[2] == 'H4-5') {
                 this.dataSource[9].lunes = horario[3];
-              } else if (horario[2] == 11) {
+              } else if (horario[2] == 'H5-6') {
                 this.dataSource[10].lunes = horario[3];
-              } else if (horario[2] == 12) {
+              } else if (horario[2] == 'H6-7') {
                 this.dataSource[11].lunes = horario[3];
-              } else if (horario[2] == 13) {
+              } else if (horario[2] == 'H7-8') {
                 this.dataSource[12].lunes = horario[3];
               }
             } else if (horario[1] == 'Martes') {
-              if (horario[2] == 1) {
+              if (horario[2] == 'H7-8') {
                 this.dataSource[0].martes = horario[3];
-              } else if (horario[2] == 2) {
+              } else if (horario[2] == 'H8-9') {
                 this.dataSource[1].martes = horario[3];
-              } else if (horario[2] == 3) {
+              } else if (horario[2] == 'H9-10') {
                 this.dataSource[2].martes = horario[3];
-              } else if (horario[2] == 4) {
+              } else if (horario[2] == 'H10-11') {
                 this.dataSource[3].martes = horario[3];
-              } else if (horario[2] == 5) {
+              } else if (horario[2] == 'H11-12') {
                 this.dataSource[4].martes = horario[3];
-              } else if (horario[2] == 6) {
+              } else if (horario[2] == 'H12-1') {
                 this.dataSource[5].martes = horario[3];
-              } else if (horario[2] == 7) {
+              } else if (horario[2] == 'H1-2') {
                 this.dataSource[6].martes = horario[3];
-              } else if (horario[2] == 8) {
+              } else if (horario[2] == 'H2-1') {
                 this.dataSource[6].martes = horario[3];
-              } else if (horario[2] == 9) {
+              } else if (horario[2] == 'H2-3') {
                 this.dataSource[8].martes = horario[3];
-              } else if (horario[2] == 10) {
+              } else if (horario[2] == 'H4-5') {
                 this.dataSource[9].martes = horario[3];
-              } else if (horario[2] == 11) {
+              } else if (horario[2] == 'H5-6') {
                 this.dataSource[10].martes = horario[3];
-              } else if (horario[2] == 12) {
+              } else if (horario[2] == 'H6-7') {
                 this.dataSource[11].martes = horario[3];
-              } else if (horario[2] == 13) {
+              } else if (horario[2] == 'H7-8') {
                 this.dataSource[12].martes = horario[3];
               }
             } else if (horario[1] == 'Miercoles') {
-              if (horario[2] == 1) {
+              if (horario[2] == 'H7-8') {
                 this.dataSource[0].miercoles = horario[3];
-              } else if (horario[2] == 2) {
+              } else if (horario[2] == 'H8-9') {
                 this.dataSource[1].miercoles = horario[3];
-              } else if (horario[2] == 3) {
+              } else if (horario[2] == 'H9-10') {
                 this.dataSource[2].miercoles = horario[3];
-              } else if (horario[2] == 4) {
+              } else if (horario[2] == 'H10-11') {
                 this.dataSource[3].miercoles = horario[3];
-              } else if (horario[2] == 5) {
+              } else if (horario[2] == 'H11-12') {
                 this.dataSource[4].miercoles = horario[3];
-              } else if (horario[2] == 6) {
+              } else if (horario[2] == 'H12-1') {
                 this.dataSource[5].miercoles = horario[3];
-              } else if (horario[2] == 7) {
+              } else if (horario[2] == 'H1-2') {
                 this.dataSource[6].miercoles = horario[3];
-              } else if (horario[2] == 8) {
+              } else if (horario[2] == 'H2-1') {
                 this.dataSource[6].miercoles = horario[3];
-              } else if (horario[2] == 9) {
+              } else if (horario[2] == 'H2-3') {
                 this.dataSource[8].miercoles = horario[3];
-              } else if (horario[2] == 10) {
+              } else if (horario[2] == 'H4-5') {
                 this.dataSource[9].miercoles = horario[3];
-              } else if (horario[2] == 11) {
+              } else if (horario[2] == 'H5-6') {
                 this.dataSource[10].miercoles = horario[3];
-              } else if (horario[2] == 12) {
+              } else if (horario[2] == 'H6-7') {
                 this.dataSource[11].miercoles = horario[3];
-              } else if (horario[2] == 13) {
+              } else if (horario[2] == 'H7-8') {
                 this.dataSource[12].miercoles = horario[3];
               }
             } else if (horario[1] == 'Jueves') {
-              if (horario[2] == 1) {
+              if (horario[2] == 'H7-8') {
                 this.dataSource[0].jueves = horario[3];
-              } else if (horario[2] == 2) {
+              } else if (horario[2] == 'H8-9') {
                 this.dataSource[1].jueves = horario[3];
-              } else if (horario[2] == 3) {
+              } else if (horario[2] == 'H9-10') {
                 this.dataSource[2].jueves = horario[3];
-              } else if (horario[2] == 4) {
+              } else if (horario[2] == 'H10-11') {
                 this.dataSource[3].jueves = horario[3];
-              } else if (horario[2] == 5) {
+              } else if (horario[2] == 'H11-12') {
                 this.dataSource[4].jueves = horario[3];
-              } else if (horario[2] == 6) {
+              } else if (horario[2] == 'H12-1') {
                 this.dataSource[5].jueves = horario[3];
-              } else if (horario[2] == 7) {
+              } else if (horario[2] == 'H1-2') {
                 this.dataSource[6].jueves = horario[3];
-              } else if (horario[2] == 8) {
+              } else if (horario[2] == 'H2-1') {
                 this.dataSource[6].jueves = horario[3];
-              } else if (horario[2] == 9) {
+              } else if (horario[2] == 'H2-3') {
                 this.dataSource[8].jueves = horario[3];
-              } else if (horario[2] == 10) {
+              } else if (horario[2] == 'H4-5') {
                 this.dataSource[9].jueves = horario[3];
-              } else if (horario[2] == 11) {
+              } else if (horario[2] == 'H5-6') {
                 this.dataSource[10].jueves = horario[3];
-              } else if (horario[2] == 12) {
+              } else if (horario[2] == 'H6-7') {
                 this.dataSource[11].jueves = horario[3];
-              } else if (horario[2] == 13) {
+              } else if (horario[2] == 'H7-8') {
                 this.dataSource[12].jueves = horario[3];
               }
             } else if (horario[1] == 'Viernes') {
-              if (horario[2] == 1) {
+              if (horario[2] == 'H7-8') {
                 this.dataSource[0].viernes = horario[3];
-              } else if (horario[2] == 2) {
+              } else if (horario[2] == 'H8-9') {
                 this.dataSource[1].viernes = horario[3];
-              } else if (horario[2] == 3) {
+              } else if (horario[2] == 'H9-10') {
                 this.dataSource[2].viernes = horario[3];
-              } else if (horario[2] == 4) {
+              } else if (horario[2] == 'H10-11') {
                 this.dataSource[3].viernes = horario[3];
-              } else if (horario[2] == 5) {
+              } else if (horario[2] == 'H11-12') {
                 this.dataSource[4].viernes = horario[3];
-              } else if (horario[2] == 6) {
+              } else if (horario[2] == 'H12-1') {
                 this.dataSource[5].viernes = horario[3];
-              } else if (horario[2] == 7) {
+              } else if (horario[2] == 'H1-2') {
                 this.dataSource[6].viernes = horario[3];
-              } else if (horario[2] == 8) {
+              } else if (horario[2] == 'H2-1') {
                 this.dataSource[6].viernes = horario[3];
-              } else if (horario[2] == 9) {
+              } else if (horario[2] == 'H2-3') {
                 this.dataSource[8].viernes = horario[3];
-              } else if (horario[2] == 10) {
+              } else if (horario[2] == 'H4-5') {
                 this.dataSource[9].viernes = horario[3];
-              } else if (horario[2] == 11) {
+              } else if (horario[2] == 'H5-6') {
                 this.dataSource[10].viernes = horario[3];
-              } else if (horario[2] == 12) {
+              } else if (horario[2] == 'H6-7') {
                 this.dataSource[11].viernes = horario[3];
-              } else if (horario[2] == 13) {
+              } else if (horario[2] == 'H7-8') {
                 this.dataSource[12].viernes = horario[3];
               }
             } else if (horario[1] == 'Sabado') {
-              if (horario[2] == 1) {
+              if (horario[2] == 'H7-8') {
                 this.dataSource[0].sabado = horario[3];
-              } else if (horario[2] == 2) {
+              } else if (horario[2] == 'H8-9') {
                 this.dataSource[1].sabado = horario[3];
-              } else if (horario[2] == 3) {
+              } else if (horario[2] == 'H9-10') {
                 this.dataSource[2].sabado = horario[3];
-              } else if (horario[2] == 4) {
+              } else if (horario[2] == 'H10-11') {
                 this.dataSource[3].sabado = horario[3];
-              } else if (horario[2] == 5) {
+              } else if (horario[2] == 'H11-12') {
                 this.dataSource[4].sabado = horario[3];
-              } else if (horario[2] == 6) {
+              } else if (horario[2] == 'H12-1') {
                 this.dataSource[5].sabado = horario[3];
-              } else if (horario[2] == 7) {
+              } else if (horario[2] == 'H1-2') {
                 this.dataSource[6].sabado = horario[3];
-              } else if (horario[2] == 8) {
+              } else if (horario[2] == 'H2-1') {
                 this.dataSource[6].sabado = horario[3];
-              } else if (horario[2] == 9) {
+              } else if (horario[2] == 'H2-3') {
                 this.dataSource[8].sabado = horario[3];
-              } else if (horario[2] == 10) {
+              } else if (horario[2] == 'H4-5') {
                 this.dataSource[9].sabado = horario[3];
-              } else if (horario[2] == 11) {
+              } else if (horario[2] == 'H5-6') {
                 this.dataSource[10].sabado = horario[3];
-              } else if (horario[2] == 12) {
+              } else if (horario[2] == 'H6-7') {
                 this.dataSource[11].sabado = horario[3];
-              } else if (horario[2] == 13) {
+              } else if (horario[2] == 'H7-8') {
                 this.dataSource[12].sabado = horario[3];
               }
             }
@@ -293,8 +312,23 @@ export class HorariosalonComponent implements OnInit {
     }
   }
 
+  actualizarSalones() {
+
+    console.log("Salones: "+this.salones[0]);
+    //console.log("Horarios: "+this.horarios);
+
+    this.salonesselect = [{value: '', viewValue: ''}];
+
+    for (const salon of this.salones) {
+      console.log("Salon: "+this.salon[0]);
+      this.salonesselect.push({value: salon[0], viewValue: salon[1]});
+    }
+    this.salonesselect.shift();
+  }
+
   capturar() {
     console.log('Salón Seleccionado: ' + this.selectedSalon);
+    //this.actualizarSalones();
   }
 
 /*

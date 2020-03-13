@@ -107,19 +107,19 @@ export class ListamateriasComponent implements OnInit {
     {value: 'Sabado', viewValue: 'Sabado'},
   ];
   horasselect: HoraSelect[] = [
-    {value: 'H1', viewValue: '7 - 8 am'},
-    {value: 'H2', viewValue: '8 - 9 am'},
-    {value: 'H3', viewValue: '9 - 10 am'},
-    {value: 'H4', viewValue: '10 - 11 am'},
-    {value: 'H5', viewValue: '11 - 12 m'},
-    {value: 'H6', viewValue: '12 - 1 pm'},
-    {value: 'H7', viewValue: '1 - 2 pm'},
-    {value: 'H8', viewValue: '2 - 3 pm'},
-    {value: 'H9', viewValue: '3 - 4 pm'},
-    {value: 'H10', viewValue: '4 - 5 pm'},
-    {value: 'H11', viewValue: '5 - 6 pm'},
-    {value: 'H12', viewValue: '6 - 7 pm'},
-    {value: 'H13', viewValue: '7 - 8 pm'}
+    {value: 'H7-8', viewValue: '7 - 8 am'},
+    {value: 'H8-9', viewValue: '8 - 9 am'},
+    {value: 'H9-10', viewValue: '9 - 10 am'},
+    {value: 'H10-11', viewValue: '10 - 11 am'},
+    {value: 'H11-12', viewValue: '11 - 12 m'},
+    {value: 'H12-1', viewValue: '12 - 1 pm'},
+    {value: 'H1-2', viewValue: '1 - 2 pm'},
+    {value: 'H2-3', viewValue: '2 - 3 pm'},
+    {value: 'H3-4', viewValue: '3 - 4 pm'},
+    {value: 'H4-5', viewValue: '4 - 5 pm'},
+    {value: 'H5-6', viewValue: '5 - 6 pm'},
+    {value: 'H6-7', viewValue: '6 - 7 pm'},
+    {value: 'H7-8', viewValue: '7 - 8 pm'}
   ];
 
 
@@ -195,13 +195,19 @@ export class ListamateriasComponent implements OnInit {
       //console.log("Horario en 3: " + horario[3]);
       if (horario[3] == idMateria) {
         this.horariosxm.push({id: horario[0], dia: horario[1], hora: horario[2], materia: horario[3], salon: horario[4]});
-        console.log("Horarios x Materia: "+ horario[0]);
+        //console.log("Horarios x Materia: "+ horario[0]);
       } else {
 
       }
       
     }
     this.horariosxm.shift();
+    if (this.horariosxm.length>=1) {
+      console.log("Cuántos horarios x materia hay?: "+this.horariosxm.length);
+    } else {
+      this.horariosxm = null;
+    }
+    
   }
 
   crearMateria() {
@@ -218,6 +224,20 @@ export class ListamateriasComponent implements OnInit {
     );
   }
 
+  crearHorario() {
+    console.log(this.horario);
+    this.HorariossalonService.crearHorario(this.horario).subscribe(
+      datos => {
+        // tslint:disable-next-line: no-string-literal
+        if (datos['resultado'] === 'OK') {
+          // tslint:disable-next-line: no-string-literal
+          alert(datos['mensaje']);
+          this.obtenerHorarios();
+        }
+      }
+    );
+  }
+
   borrarMateria(idMateria) {
     console.log(idMateria);
     this.MateriasService.borrarMateria(idMateria).subscribe(
@@ -227,6 +247,20 @@ export class ListamateriasComponent implements OnInit {
           // tslint:disable-next-line: no-string-literal
           alert(datos['mensaje']);
           this.obtenerMaterias();
+        }
+      }
+    );
+  }
+
+  borrarHorario(idHorario) {
+    console.log(idHorario);
+    this.HorariossalonService.borrarHorario(idHorario).subscribe(
+      datos => {
+        // tslint:disable-next-line: no-string-literal
+        if (datos['resultado'] === 'OK') {
+          // tslint:disable-next-line: no-string-literal
+          alert(datos['mensaje']);
+          this.obtenerHorarios();
         }
       }
     );
@@ -331,20 +365,56 @@ export class ListamateriasComponent implements OnInit {
   }
 
   verificarHorarioLibre(){
-    //selectedSalon: string;
-  //selectedProfe: string;
-  //selectedDia: string;
-  //selectedHora: string;
-  console.log("Como quedaría: "+this.selectedDia+this.selectedHora+this.selectedSalon);
+
+  let idHorario = this.selectedDia+this.selectedHora+this.selectedSalon;
+  var crear=true;
+  console.log("Como quedaría: "+idHorario);
   for (const horario of this.horarios) {
     
     if (horario[0]!=(this.selectedDia+this.selectedHora+this.selectedSalon)) {
-      console.log("No es Igual a: "+horario[0]);
+      //console.log("No es Igual a: "+horario[0]);
     } else {
-      console.log("Si es Igual: "+this.selectedDia+this.selectedHora+this.selectedSalon);
+      //console.log("Si es Igual: "+this.selectedDia+this.selectedHora+this.selectedSalon);
+      crear=false;
     }
   }
 
+  if(crear){
+    
+    this.horario = {hId: idHorario, hDia: this.selectedDia, hHora: this.selectedHora, hMateria: this.materia.matNombre, hSalon: this.selectedSalon}
+    //console.log("Horario: "+this.horario);
+    //console.log("Materia: "+this.materia);
+    this.crearHorario();
+    this.obtenerHorariosXM(this.materia.matNombre);
+    this.hayRegistrosHorariosXM();
+  } else {
+    alert("ERROR: El Horario: "+idHorario+" está ocupado");
+    console.log("No se creó Horario: "+idHorario+" porque está ocupado");
+  }
+  
+  }
+
+  verificarMateria(){
+
+    let idHorario = this.selectedDia+this.selectedHora+this.selectedSalon;
+    var crear=true;
+    console.log("Crear Materia con nombre: "+this.materia.matNombre);
+    for (const materia of this.materias) {
+      
+      if (materia[1]!=this.materia.matNombre) {
+        //console.log("No es Igual a: "+materia[1]);
+      } else {
+        //console.log("Si es Igual: "+materia[1]);
+        crear=false;
+      }
+    }
+    if(crear){
+      this.crearMateria();
+    } else {
+      alert("ERROR: La Materia con Nombre: "+this.materia.matNombre+" ya está creada");
+      console.log("No se creó Materia con nombre: "+this.materia.matNombre+" porque ya existe");
+    }
+    
   }
 
 

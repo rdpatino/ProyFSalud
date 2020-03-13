@@ -172,32 +172,32 @@ export class HorariodiaComponent implements OnInit {
             this.indice=0;
             for (const salon of this.salones) {
               this.indice = this.indice+1;
-              if (horario[4] == salon[1]) {
-              if (horario[2] == 1) {
+              if (horario[4] == salon[0]) {
+              if (horario[2] == 'H7-8') {
                 this.dataSource[this.indice].hora1 = horario[3];
-              } else if (horario[2] == 2) {
+              } else if (horario[2] == 'H8-9') {
                 this.dataSource[this.indice].hora2 = horario[3];
-              } else if (horario[2] == 3) {
+              } else if (horario[2] == 'H9-10') {
                 this.dataSource[this.indice].hora3 = horario[3];
-              } else if (horario[2] == 4) {
+              } else if (horario[2] == 'H10-11') {
                 this.dataSource[this.indice].hora4 = horario[3];
-              } else if (horario[2] == 5) {
+              } else if (horario[2] == 'H11-12') {
                 this.dataSource[this.indice].hora5 = horario[3];
-              } else if (horario[2] == 6) {
+              } else if (horario[2] == 'H12-1') {
                 this.dataSource[this.indice].hora6 = horario[3];
-              } else if (horario[2] == 7) {
+              } else if (horario[2] == 'H1-2') {
                 this.dataSource[this.indice].hora7 = horario[3];
-              } else if (horario[2] == 8) {
+              } else if (horario[2] == 'H2-3') {
                 this.dataSource[this.indice].hora8 = horario[3];
-              } else if (horario[2] == 9) {
+              } else if (horario[2] == 'H3-4') {
                 this.dataSource[this.indice].hora9 = horario[3];
-              } else if (horario[2] == 10) {
+              } else if (horario[2] == 'H4-5') {
                 this.dataSource[this.indice].hora10 = horario[3];
-              } else if (horario[2] == 11) {
+              } else if (horario[2] == 'H5-6') {
                 this.dataSource[this.indice].hora11 = horario[3];
-              } else if (horario[2] == 12) {
+              } else if (horario[2] == 'H6-7') {
                 this.dataSource[this.indice].hora12 = horario[3];
-              } else if (horario[2] == 13) {
+              } else if (horario[2] == 'H7-8') {
                 this.dataSource[this.indice].hora13 = horario[3];
               }
             } 

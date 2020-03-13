@@ -10,21 +10,28 @@
 
 <div align="center">
     <h1>Horario x Salón</h1>
- 
-    <form>
+
+    <div *ngIf="haySalones(); else nohaysalones"> 
+      <button mat-raised-button color="accent" (click)="actualizarSalones()"> Actualizar </button>
+      <h2></h2>
+    </div>
+<ng-template #nohaysalones>
+      <form>
       <mat-form-field>
         <mat-label>Salón</mat-label>
-        <mat-select [(ngModel)]="selectedSalon" name="salon" (change)="capturar()">
-          <!-- <option value="" selected></option> -->
+        <mat-select [(ngModel)]="selectedSalon" name="salon" (onChange)="capturar()">
           <mat-option *ngFor="let salon of salonesselect" [value]="salon.value">
             {{salon.viewValue}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <!-- <p> Salón seleccionado: {{selectedSalon}} </p> -->
     </form>
 
     <h2>Horario de clases para salón: {{selectedSalon}}</h2>
+      </ng-template>
+    
+
+
 
     <table mat-table *ngIf="hayRegistrosHorariosSalon(); else sin" [dataSource]="dataSource" class="mat-elevation-z8">
     
