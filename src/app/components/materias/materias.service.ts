@@ -42,4 +42,8 @@ export class MateriasService {
     return this.http.put(this.URL + `EditarMateria.php`, JSON.stringify(materia));
   }
 
+  editarCambioHorario(materia) {
+    return this.http.put(this.URL + `EditarCambioHorario.php`, JSON.stringify(materia));
+  }
+
 }

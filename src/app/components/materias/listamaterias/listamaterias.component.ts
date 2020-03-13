@@ -61,6 +61,7 @@ export class ListamateriasComponent implements OnInit {
       hMateria: null,
       hSalon: null,
     };
+    NewhMateria:string;
 
     //horariosxm: HorarioXM[] = [{id: '', dia: '', hora: '', materia: '', salon: ''}];
     horariosxm: HorarioXM[];
@@ -190,11 +191,13 @@ export class ListamateriasComponent implements OnInit {
   obtenerHorariosXM(idMateria) {
     console.log("Obtiene horarios con: " + idMateria);
     this.horariosxm = [{id: '', dia: '', hora: '', materia: '', salon: ''}];
+    this.NewhMateria = "" ;
 
     for (const horario of this.horarios) {
       //console.log("Horario en 3: " + horario[3]);
       if (horario[3] == idMateria) {
         this.horariosxm.push({id: horario[0], dia: horario[1], hora: horario[2], materia: horario[3], salon: horario[4]});
+        this.NewhMateria = this.NewhMateria + horario[0] + ",";
         //console.log("Horarios x Materia: "+ horario[0]);
       } else {
 
@@ -236,6 +239,22 @@ export class ListamateriasComponent implements OnInit {
         }
       }
     );
+    this.editarCambioHorario();
+  }
+
+  editarCambioHorario() {
+    this.materia.matHorarios = this.NewhMateria;
+    console.log(this.materia);
+    this.MateriasService.editarCambioHorario(this.materia).subscribe(
+      datos => {
+        // tslint:disable-next-line: no-string-literal
+        if (datos['resultado'] === 'OK') {
+          // tslint:disable-next-line: no-string-literal
+          alert(datos['mensaje']);
+          this.obtenerMaterias();
+        }
+      }
+    );
   }
 
   borrarMateria(idMateria) {
@@ -264,6 +283,7 @@ export class ListamateriasComponent implements OnInit {
         }
       }
     );
+    this.editarCambioHorario();
   }
 
   editarMateria() {
@@ -386,7 +406,7 @@ export class ListamateriasComponent implements OnInit {
     //console.log("Materia: "+this.materia);
     this.crearHorario();
     this.obtenerHorariosXM(this.materia.matNombre);
-    this.hayRegistrosHorariosXM();
+    //this.hayRegistrosHorariosXM();
   } else {
     alert("ERROR: El Horario: "+idHorario+" está ocupado");
     console.log("No se creó Horario: "+idHorario+" porque está ocupado");

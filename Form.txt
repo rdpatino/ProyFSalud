@@ -69,28 +69,37 @@ Acciones de tipo usuario:
 -------------------------------------------------------------------------------
 
 ---------- Páginas:----------
-Home
+Home                                                                    (opcional)
 Login: directo con admin, admin
-Materia: Accede cada materia a una página para dar información de ella (opcional)
+Materia: Accede cada materia a una página para dar información de ella  (opcional)
 Horario por salón: Nombre de salones -> lunes-sabado vs 7am-7pm
-Horario por día: lunes a sábado -> salones vs 7am-7pm
+Horario por día: lunes a sábado -> 7am-7pm vs salones
 Lista Materias
 Lista Profesores
 Lista Salones
+Lista Horarios                                                          (opcional)
 About/ Información 
 
 ---------- Lógica para llenar filas de Horario x Salon ----------
 
 - Mostrar Horario de Salón (Lunes-Sabado vs 7am-7pm) con Materias
-{hora: '9am', lunes: 'Materia 1', martes: '', miercoles: '', jueves: 'Materia 1', viernes: '', sabado: ''},
+{hora: '9am', lunes: '', martes: '', miercoles: '', jueves: '', viernes: '', sabado: ''}
 
 1 Obtener Horarios (`hId`, `hDia`, `hHora`, `hMateria`, `hSalon`)
     - recorrer horarios
         - si hSalon = salon
             - si hDia = Lunes ... si hDia = Sabado
-                - si hHora = 1 ... si hHora = 13
+                - si hHora = H7-8 ... si hHora = H7-8
 
+---------- Lógica para llenar filas de Horario x Dia ----------
 
-1 Obtener Horarios por Salón (`hId`, `hDia`, `hHora`, `hMateria`)
-SELECT * FROM `horarios` WHERE `hSalon` = 'Salon 1';
+- Mostrar Horario de Día (7am-7pm vs Salones) con Materias
+{nombreSalon: '', hora1: '', hora2: '', hora3: '', hora4: '', hora5: '', hora6: '', hora7: '', hora8: '', hora9: '', hora10: '', hora11: '', hora12: '', hora13: ''}
+
+1 Obtener Horarios (`hId`, `hDia`, `hHora`, `hMateria`, `hSalon`)
+    - recorrer horarios
+        - si hDia = Lunes ... si hDia = Sabado
+            - si hSalon = salon
+                - si hHora = H7-8 ... si hHora = H7-8
+
 

@@ -126,7 +126,7 @@
           <td> {{ horarioxm.materia }} </td>
           <td> {{ horarioxm.salon }} </td>
     
-          <td> <button mat-raised-button color="warn" > Borrar </button> </td>
+          <td> <button mat-raised-button color="warn" (click)="borrarHorario(horarioxm.id)"> Borrar </button> </td>
           <td> <button mat-raised-button color="primary" > Seleccionar </button> </td>
         </tr>
         </table>
@@ -164,11 +164,16 @@
           </mat-form-field>
         </div>
           <mat-form-field appearance="fill" style="width: 300px">
-            <mat-label>Resumen</mat-label>
+            <mat-label>Id Horario</mat-label>
             <input matInput type="text" [(ngModel)]="selectedDia+selectedHora+selectedSalon" />
           </mat-form-field>
 
         <button mat-raised-button color="link" (click)="verificarHorarioLibre()" >Agregar Horario</button>
+
+        <mat-form-field appearance="fill" style="width: 300px">
+          <mat-label>Resumen Horarios</mat-label>
+          <input matInput type="text" [(ngModel)]="materia.matHorarios" />
+        </mat-form-field>
 
       </mat-card-content>
       <mat-card-header>
