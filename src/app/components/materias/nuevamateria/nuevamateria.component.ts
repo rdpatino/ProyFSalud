@@ -14,7 +14,7 @@ export class NuevamateriaComponent implements OnInit {
   materia = {
     matId: null,
     matNombre: null,
-    matHorarios: null,
+    matDetalles: null,
     matPrograma: null,
     matCupo: null,
     matSemestre: null,
@@ -25,7 +25,7 @@ export class NuevamateriaComponent implements OnInit {
 
   public nuevaMateriaForm = new FormGroup({
     matNombre: new FormControl('', Validators.required),
-    matHorarios: new FormControl('', Validators.required),
+    matDetalles: new FormControl('', Validators.required),
     matPrograma: new FormControl('', Validators.required),
     matCupo: new FormControl('', Validators.required),
     matSemestre: new FormControl('', Validators.required),

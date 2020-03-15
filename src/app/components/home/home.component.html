@@ -1,11 +1,12 @@
-<p>home works!</p>
+
 <div class="container">
     <mat-card class="post-card" *ngFor="let materia of materias">
         <mat-card-header>
-            <mat-card-title><a [routerLink]= "['/materia', materia.id]" >  {{materia.nombre}} </a></mat-card-title>
+            <mat-card-title><a [routerLink]= "['/materia', materia.matId]" >  {{materia.matNombre}} </a></mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <p> {{materia.contenido}} </p>
+            <p> Programa: {{materia.matPrograma}} </p>
+            <p> Semestre:{{materia.matSemestre}} </p>
         </mat-card-content>
     </mat-card>
 </div>

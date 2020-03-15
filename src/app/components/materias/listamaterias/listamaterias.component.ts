@@ -40,13 +40,13 @@ export interface HorarioXM {
 })
 export class ListamateriasComponent implements OnInit {
 
-  // Materia (nombre, asignacionTS[Tiempo, Salon], programa, cupo, semestre, Profesores)
+  // Materia (nombre, detalles, programa, cupo, semestre, Profesores)
 
   materias = null;
   materia = {
     matId: null,
     matNombre: null,
-    matHorarios: null,
+    matDetalles: null,
     matPrograma: null,
     matCupo: null,
     matSemestre: null,
@@ -61,7 +61,7 @@ export class ListamateriasComponent implements OnInit {
       hMateria: null,
       hSalon: null,
     };
-    NewhMateria:string;
+    //NewhMateria:string;
 
     //horariosxm: HorarioXM[] = [{id: '', dia: '', hora: '', materia: '', salon: ''}];
     horariosxm: HorarioXM[];
@@ -132,28 +132,13 @@ export class ListamateriasComponent implements OnInit {
     this.obtenerProfesores();
     this.obtenerSalones();
     this.obtenerHorarios();
-    //this.buscarHorariosXM(this.materia);
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.materias.filter = filterValue.trim().toLowerCase();
   }
-/*
-  form = new FormGroup({
-    dia: new FormControl('', Validators.required),
-    hora: new FormControl('', Validators.required),
-    salon: new FormControl('', Validators.required)
-  });
-  get f(){
-    return this.form.controls;
-  }
- 
-  submit(){
-      if(this.form.status === 'VALID'){
-        console.log(this.form.value);
-      }
-  } */
+
 
   obtenerMaterias() {
     this.MateriasService.obtenerMaterias()
@@ -180,24 +165,18 @@ export class ListamateriasComponent implements OnInit {
       result => this.horarios = result
     );
   }
-/*
-  obtenerHorariosXM(idMateria) {
-    console.log("busca con:" + idMateria);
-    this.HorariossalonService.ObtenerHorariosXM(idMateria).subscribe(
-      result => this.horariosxm = result
-    );
-  } */
+
 
   obtenerHorariosXM(idMateria) {
     console.log("Obtiene horarios con: " + idMateria);
     this.horariosxm = [{id: '', dia: '', hora: '', materia: '', salon: ''}];
-    this.NewhMateria = "" ;
+    //this.NewhMateria = "" ;
 
     for (const horario of this.horarios) {
       //console.log("Horario en 3: " + horario[3]);
       if (horario[3] == idMateria) {
         this.horariosxm.push({id: horario[0], dia: horario[1], hora: horario[2], materia: horario[3], salon: horario[4]});
-        this.NewhMateria = this.NewhMateria + horario[0] + ",";
+        //this.NewhMateria = this.NewhMateria + horario[0] + ","; //para horarios en materia (cambiado a detalles)
         //console.log("Horarios x Materia: "+ horario[0]);
       } else {
 
@@ -239,11 +218,11 @@ export class ListamateriasComponent implements OnInit {
         }
       }
     );
-    this.editarCambioHorario();
+    //this.editarCambioHorario();
   }
-
+/*
   editarCambioHorario() {
-    this.materia.matHorarios = this.NewhMateria;
+    this.materia.matDetalles = this.NewhMateria;
     console.log(this.materia);
     this.MateriasService.editarCambioHorario(this.materia).subscribe(
       datos => {
@@ -255,7 +234,7 @@ export class ListamateriasComponent implements OnInit {
         }
       }
     );
-  }
+  } */
 
   borrarMateria(idMateria) {
     console.log(idMateria);
@@ -283,7 +262,7 @@ export class ListamateriasComponent implements OnInit {
         }
       }
     );
-    this.editarCambioHorario();
+    //this.editarCambioHorario();
   }
 
   editarMateria() {
@@ -334,7 +313,6 @@ export class ListamateriasComponent implements OnInit {
     }
   }
 
-
   hayprofes() {
     if (this.profesoresselect == null) {
       return true;
@@ -351,28 +329,22 @@ export class ListamateriasComponent implements OnInit {
   }
 
   actualizarSalonesyProfes() {
-    //console.log('-Materias: ' + this.materias);
-    //console.log('-Profesores: ' + this.profesores);
-    //console.log('-Salones: ' + this.salones);
-
     this.salonesselect = [{value: '', viewValue: ''}];
     this.profesoresselect = [{value: '', viewValue: ''}];
 
-    //this.profesoresselect.push({value: 'Profe 1', viewValue: 'Profe 1'});
-
     for (const profe of this.profesores) {
       this.profesoresselect.push({value: profe[0], viewValue: profe[1]});
-      //console.log('profe: '+ profe[0] +' '+ profe[1] +' '+ profe[2]);
     }
+
     for (const salon of this.salones) {
       this.salonesselect.push({value: salon[0], viewValue: salon[1]});
     }
 
     this.profesoresselect.shift();
     this.salonesselect.shift();
-
   }
 
+/*
   onNuevaMateria(){
     this.openDialog();
   }
@@ -382,40 +354,38 @@ export class ListamateriasComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result ${result}`);
     });
-  }
+  } */
 
   verificarHorarioLibre(){
-
-  let idHorario = this.selectedDia+this.selectedHora+this.selectedSalon;
-  var crear=true;
-  console.log("Como quedaría: "+idHorario);
-  for (const horario of this.horarios) {
-    
-    if (horario[0]!=(this.selectedDia+this.selectedHora+this.selectedSalon)) {
-      //console.log("No es Igual a: "+horario[0]);
-    } else {
-      //console.log("Si es Igual: "+this.selectedDia+this.selectedHora+this.selectedSalon);
-      crear=false;
+    let idHorario = this.selectedDia+this.selectedHora+this.selectedSalon;
+    var crear=true;
+    console.log("Como quedaría: "+idHorario);
+    for (const horario of this.horarios) {
+      
+      if (horario[0]!=(this.selectedDia+this.selectedHora+this.selectedSalon)) {
+        //console.log("No es Igual a: "+horario[0]);
+      } else {
+        //console.log("Si es Igual: "+this.selectedDia+this.selectedHora+this.selectedSalon);
+        crear=false;
+      }
     }
-  }
 
-  if(crear){
-    
-    this.horario = {hId: idHorario, hDia: this.selectedDia, hHora: this.selectedHora, hMateria: this.materia.matNombre, hSalon: this.selectedSalon}
-    //console.log("Horario: "+this.horario);
-    //console.log("Materia: "+this.materia);
-    this.crearHorario();
-    this.obtenerHorariosXM(this.materia.matNombre);
-    //this.hayRegistrosHorariosXM();
-  } else {
-    alert("ERROR: El Horario: "+idHorario+" está ocupado");
-    console.log("No se creó Horario: "+idHorario+" porque está ocupado");
-  }
+    if(crear){
+      
+      this.horario = {hId: idHorario, hDia: this.selectedDia, hHora: this.selectedHora, hMateria: this.materia.matNombre, hSalon: this.selectedSalon}
+      //console.log("Horario: "+this.horario);
+      //console.log("Materia: "+this.materia);
+      this.crearHorario();
+      this.obtenerHorariosXM(this.materia.matNombre);
+      //this.hayRegistrosHorariosXM();
+    } else {
+      alert("ERROR: El Horario: "+idHorario+" está ocupado");
+      console.log("No se creó Horario: "+idHorario+" porque está ocupado");
+    }
   
   }
 
   verificarMateria(){
-
     let idHorario = this.selectedDia+this.selectedHora+this.selectedSalon;
     var crear=true;
     console.log("Crear Materia con nombre: "+this.materia.matNombre);

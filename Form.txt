@@ -9,6 +9,7 @@ Clases:
 - Usuario (tipo, id, password)
 
 - Materia (nombre, asignacionTS[Tiempo, Salon], programa, cupo, semestre, Profesores)
+- Materia (nombre, detalles, programa, cupo, semestre, Profesores)                      --> Cambio
 
 - Salon (nombre, asignacionTM[Tiempo, Materia], cupo, detalles)
 

@@ -1,13 +1,52 @@
-<p>materia works!</p>
-ID:{{ materia.id }}
 
-<div class="container">
+<div class="container" *ngIf="hayRegistros(); else sinMateria">
     <mat-card class="post-card">
         <mat-card-header>
-            <mat-card-title> {{materia.nombre}} </mat-card-title>
+            <mat-card-title> {{materia.matNombre}} </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <p> {{materia.contenido}} </p>
+            <p> Programa: {{materia.matPrograma}} </p>
+            <p> Semestre: {{materia.matSemestre}} </p>
+            <p> Cupo: {{materia.matCupo}} </p>
+            <p> Detalles: {{materia.matDetalles}} </p>
         </mat-card-content>
     </mat-card>
+
+    <mat-card>
+        <mat-card-content>
+
+            <div *ngIf="hayRegistrosHorariosXM(); else actualizar">
+                <table class="mat-elevation-z8" *ngIf="hayRegistrosHorariosXM(); else sinHorariosXM">
+                    <tr class="tr-title">
+                    <td>Dia</td>
+                    <td>Hora</td>
+                    <td>Materia</td>
+                    <td>Salon</td>
+                  </tr>
+                  <tr *ngFor="let horarioxm of horariosxm">
+                    <td> {{ horarioxm.dia }} </td>
+                    <td> {{ horarioxm.hora }} </td>
+                    <td> {{ horarioxm.materia }} </td>
+                    <td> {{ horarioxm.salon }} </td>
+                  </tr>
+                  </table>
+            </div>
+            <ng-template #actualizar>
+                <button mat-raised-button color="primary" (click)="this.obtenerHorariosXM(materia.matNombre)"> Horarios </button>
+            </ng-template>
+
+            <ng-template #sinHorariosXM>
+                <p>No hay horarios registrados.</p>
+            </ng-template>
+        
+        </mat-card-content>
+
+    </mat-card>
+
+
+
 </div>
+<ng-template #sinMateria>
+    <p>No hay materia registrada.</p>
+  </ng-template>
+

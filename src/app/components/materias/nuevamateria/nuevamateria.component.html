@@ -7,8 +7,8 @@
         <input matInput formControlName="matNombre">
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Horarios:</mat-label>
-        <input matInput placeholder="Horarios" formControlName="matHorarios">
+        <mat-label>Detalles:</mat-label>
+        <input matInput placeholder="Detalles" formControlName="matDetalles">
       </mat-form-field>
       <mat-form-field>
         <mat-select placeholder="Profes" multiple>
@@ -23,14 +23,6 @@
         <input matInput type="text" [(ngModel)]="materia.matNombre" />
         </mat-form-field>
       </p> 
-
-      <!--
-      <p> Nombre: <input type="text" [(ngModel)]="materia.matNombre" /> </p>
-      <p> Horarios: <input type="text" [(ngModel)]="materia.matHorarios" /> </p>
-      <p> Programa: <input type="text" [(ngModel)]="materia.matPrograma" /> </p>
-      <p> Cupo: <input type="number" [(ngModel)]="materia.matCupo" /> </p>
-      <p> Semestre: <input type="number" [(ngModel)]="materia.matSemestre" /> </p>
-      <p> Profesores: <input type="text" [(ngModel)]="materia.matProfesores" /> </p>  -->
 
       <div class="container-button">
         <input type="submit" class="mat-flat-button" value="Save" [mat-dialog-close]="true">

@@ -16,3 +16,17 @@
     text-align: center;
     margin: 0 auto;
 }
+
+table {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+.tr-title{
+    background-color: rgb(190, 190, 190);
+    color: black;
+  }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MateriasService } from '../materias/materias.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  materias = null;
+  materia = {
+    matId: null,
+    matNombre: null,
+    matDetalles: null,
+    matPrograma: null,
+    matCupo: null,
+    matSemestre: null,
+    matProfesores: null,
+  };
+/*
   public materias: {
     id: string;
     nombre: string;
@@ -24,11 +36,19 @@ export class HomeComponent implements OnInit {
       id: '3',
       nombre: 'Materia 3',
       contenido: 'contenido ... 3'}
-  ];
+  ]; */
 
-  constructor() { }
+  constructor(private MateriasService: MateriasService) { }
 
   ngOnInit() {
+    this.obtenerMaterias();
+  }
+
+  obtenerMaterias() {
+    this.MateriasService.obtenerMaterias()
+    .subscribe(
+      result => this.materias = result
+    );
   }
 
 }
