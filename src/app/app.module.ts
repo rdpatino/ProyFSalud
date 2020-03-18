@@ -23,7 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MateriaComponent,
     ToolbarComponent,
     NuevamateriaComponent,
-    ModalComponent
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   entryComponents: [ModalComponent],
   providers: [MateriasService, HorariossalonService],

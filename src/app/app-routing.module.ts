@@ -11,7 +11,9 @@ const routes: Routes = [
   { path: 'about', loadChildren: () => import('./components/pages/about/about.module').then(m => m.AboutModule) },
   { path: 'listamaterias', loadChildren: () => import('./components/materias/listamaterias/listamaterias.module').then(m => m.ListamateriasModule) },
   { path: 'horariosalon', loadChildren: () => import('./components/horarios/horariosalon/horariosalon.module').then(m => m.HorariosalonModule) },
-  { path: 'horariodia', loadChildren: () => import('./components/horarios/horariodia/horariodia.module').then(m => m.HorariodiaModule) }
+  { path: 'horariodia', loadChildren: () => import('./components/horarios/horariodia/horariodia.module').then(m => m.HorariodiaModule) },
+  { path: 'listaprofesores', loadChildren: () => import('./components/profesores/listaprofesores/listaprofesores.module').then(m => m.ListaprofesoresModule) },
+  { path: 'listasalones', loadChildren: () => import('./components/salones/listasalones/listasalones.module').then(m => m.ListasalonesModule) }
 ];
 
 @NgModule({
